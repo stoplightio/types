@@ -1,0 +1,8 @@
+{
+  "name": "@stoplight/types",
+  "version": "1.0.0",
+  "author": "Stoplight <support@stoplight.io>",
+  "license": "MIT",
+  "main": "./index.ts",
+  "scripts": {}
+}
