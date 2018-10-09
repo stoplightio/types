@@ -1,6 +1,6 @@
-import { INode } from "./node";
-import { IServer } from "./server";
-import { ISchema } from "./schema";
+import { INode } from './node';
+import { IServer } from './server';
+import { ISchema } from './schema';
 
 export interface IHttpOperation extends INode {
   method: string;
@@ -35,28 +35,28 @@ export interface IHttpParam {
 }
 
 export interface IHttpPathParam extends IHttpParam {
-  style?: "simple" | "matrix" | "label"; // defaults to simple
+  style?: 'simple' | 'matrix' | 'label'; // defaults to simple
 }
 
 export interface IHttpQueryParam extends IHttpParam {
-  style?: "form" | "spaceDelimited" | "pipeDelimited" | "deepObject"; // defaults to form
+  style?: 'form' | 'spaceDelimited' | 'pipeDelimited' | 'deepObject'; // defaults to form
   allowEmptyValue?: boolean;
   allowReserved?: boolean;
 }
 
 export interface IHttpHeaderParam extends IHttpParam {
-  style?: "simple"; // defaults to simple
+  style?: 'simple'; // defaults to simple
 }
 
 export interface IHttpCookieParam extends IHttpParam {
-  style?: "form"; // defaults to form
+  style?: 'form'; // defaults to form
 }
 
 export interface IHttpEncoding {
   property: string;
   mediaType?: string;
   headers?: IHttpHeaderParam[];
-  style?: "form" | "spaceDelimited" | "pipeDelimited" | "deepObject"; // defaults to form
+  style?: 'form' | 'spaceDelimited' | 'pipeDelimited' | 'deepObject'; // defaults to form
   explode?: boolean;
   allowReserved?: boolean;
 }
@@ -122,24 +122,24 @@ export interface ISecurityScheme {
 }
 
 export interface IApiKeySecurityScheme extends ISecurityScheme {
-  type: "apiKey";
+  type: 'apiKey';
   name: string;
-  in: "query" | "header" | "cookie";
+  in: 'query' | 'header' | 'cookie';
 }
 
 export interface IBearerSecurityScheme extends ISecurityScheme {
-  type: "http";
-  scheme: "bearer";
+  type: 'http';
+  scheme: 'bearer';
   bearerFormat?: string;
 }
 
 export interface IOpenIdConnectSecurityScheme extends ISecurityScheme {
-  type: "openIdConnect";
+  type: 'openIdConnect';
   openIdConnectUrl: string;
 }
 
 export interface IOauth2SecurityScheme extends ISecurityScheme {
-  type: "oauth2";
+  type: 'oauth2';
   flows: Array<{
     implicit: IOauth2ImplicitFlow;
     password: IOauth2PasswordFlow;

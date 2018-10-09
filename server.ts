@@ -1,4 +1,4 @@
-import { INodeVariable } from "./node";
+import { INodeVariable } from './node';
 
 export interface IServer {
   url: string;

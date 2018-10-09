@@ -4,5 +4,15 @@
   "author": "Stoplight <support@stoplight.io>",
   "license": "MIT",
   "main": "./index.ts",
-  "scripts": {}
+  "scripts": {},
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "devDependencies": {
+    "tslint": "5.11.x",
+    "tslint-config-stoplight": "1.0.x",
+    "typescript": "3.1.x"
+  }
 }
