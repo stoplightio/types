@@ -101,7 +101,7 @@ export interface IHttpResponse {
   // Examples: 200, 2XX, 4XX, XXX ("default" in OAS)
   // When mocking, should select most specific defined code
   code: string;
-  content: IHttpContent[];
+  contents: IHttpContent[];
   description?: string;
   headers?: IHttpHeaderParam[];
   links?: IHttpLink;
