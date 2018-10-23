@@ -26,7 +26,7 @@ export interface IHttpParam {
   description?: string;
   required?: boolean;
   explode?: boolean;
-  deprecated?: object;
+  deprecated?: boolean;
 
   // most of the type, params from oas2/oas3 will simply be converted to content with one '*' key
   content: {
