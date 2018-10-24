@@ -1,9 +1,10 @@
 {
   "name": "@stoplight/types",
-  "version": "1.0.1",
+  "version": "1.0.",
   "author": "Stoplight <support@stoplight.io>",
   "license": "MIT",
-  "main": "./index.ts",
+  "main": "./index.d.ts",
+  "types": "./index.d.ts",
   "scripts": {},
   "prettier": {
     "printWidth": 100,
