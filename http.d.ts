@@ -23,6 +23,7 @@ export interface IExample {
 // Inspired by: https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#parameterObject
 export interface IHttpParam {
   name: string;
+  style?: HttpParamStyles;
   description?: string;
   required?: boolean;
   explode?: boolean;
@@ -34,29 +35,54 @@ export interface IHttpParam {
   };
 }
 
+declare const enum HttpParamStyles {
+  Simple = 'simple',
+  Matrix = 'matrix',
+  Label = 'label',
+  Form = 'form',
+  SpaceDelimited = 'spaceDelimited',
+  PipeDelimited = 'pipeDelimited',
+  DeepObject = 'deepObject',
+}
+
 export interface IHttpPathParam extends IHttpParam {
-  style?: 'simple' | 'matrix' | 'label'; // defaults to simple
+  // defaults to simple
+  style?: HttpParamStyles.Label | HttpParamStyles.Matrix | HttpParamStyles.Simple;
 }
 
 export interface IHttpQueryParam extends IHttpParam {
-  style?: 'form' | 'spaceDelimited' | 'pipeDelimited' | 'deepObject'; // defaults to form
+  // defaults to form
+  style?:
+    | HttpParamStyles.Form
+    | HttpParamStyles.SpaceDelimited
+    | HttpParamStyles.PipeDelimited
+    | HttpParamStyles.DeepObject;
+
   allowEmptyValue?: boolean;
   allowReserved?: boolean;
 }
 
 export interface IHttpHeaderParam extends IHttpParam {
-  style?: 'simple'; // defaults to simple
+  // defaults to simple
+  style?: HttpParamStyles.Simple;
 }
 
 export interface IHttpCookieParam extends IHttpParam {
-  style?: 'form'; // defaults to form
+  // defaults to form
+  style?: HttpParamStyles.Form;
 }
 
 export interface IHttpEncoding {
   property: string;
   mediaType?: string;
   headers?: IHttpHeaderParam[];
-  style?: 'form' | 'spaceDelimited' | 'pipeDelimited' | 'deepObject'; // defaults to form
+  // deafults to form
+  style:
+    | HttpParamStyles.Form
+    | HttpParamStyles.SpaceDelimited
+    | HttpParamStyles.PipeDelimited
+    | HttpParamStyles.DeepObject;
+
   explode?: boolean;
   allowReserved?: boolean;
 }
