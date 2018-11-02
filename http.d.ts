@@ -35,7 +35,7 @@ export interface IHttpParam {
   };
 }
 
-export enum HttpParamStyles {
+declare const enum HttpParamStyles {
   simple = 'simple',
   matrix = 'matrix',
   label = 'label',
@@ -47,28 +47,29 @@ export enum HttpParamStyles {
 
 export interface IHttpPathParam extends IHttpParam {
   // defaults to simple
-  style: HttpParamStyles.label | HttpParamStyles.matrix | HttpParamStyles.simple;
+  style?: HttpParamStyles.label | HttpParamStyles.matrix | HttpParamStyles.simple;
 }
 
 export interface IHttpQueryParam extends IHttpParam {
   // defaults to form
-  style:
+  style?:
     | HttpParamStyles.form
     | HttpParamStyles.spaceDelimited
     | HttpParamStyles.pipeDelimited
     | HttpParamStyles.deepObject;
+
   allowEmptyValue?: boolean;
   allowReserved?: boolean;
 }
 
 export interface IHttpHeaderParam extends IHttpParam {
   // defaults to simple
-  style: HttpParamStyles.simple;
+  style?: HttpParamStyles.simple;
 }
 
 export interface IHttpCookieParam extends IHttpParam {
   // defaults to form
-  style: HttpParamStyles.form;
+  style?: HttpParamStyles.form;
 }
 
 export interface IHttpEncoding {
@@ -81,6 +82,7 @@ export interface IHttpEncoding {
     | HttpParamStyles.spaceDelimited
     | HttpParamStyles.pipeDelimited
     | HttpParamStyles.deepObject;
+
   explode?: boolean;
   allowReserved?: boolean;
 }
