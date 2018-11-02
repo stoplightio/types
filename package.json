@@ -1,6 +1,6 @@
 {
   "name": "@stoplight/types",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Stoplight <support@stoplight.io>",
   "license": "MIT",
   "main": "./index.d.ts",
