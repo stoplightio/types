@@ -36,27 +36,27 @@ export interface IHttpParam {
 }
 
 declare const enum HttpParamStyles {
-  simple = 'simple',
-  matrix = 'matrix',
-  label = 'label',
-  form = 'form',
-  spaceDelimited = 'spaceDelimited',
-  pipeDelimited = 'pipeDelimited',
-  deepObject = 'deepObject',
+  Simple = 'simple',
+  Matrix = 'matrix',
+  Label = 'label',
+  Form = 'form',
+  SpaceDelimited = 'spaceDelimited',
+  PipeDelimited = 'pipeDelimited',
+  DeepObject = 'deepObject',
 }
 
 export interface IHttpPathParam extends IHttpParam {
   // defaults to simple
-  style?: HttpParamStyles.label | HttpParamStyles.matrix | HttpParamStyles.simple;
+  style?: HttpParamStyles.Label | HttpParamStyles.Matrix | HttpParamStyles.Simple;
 }
 
 export interface IHttpQueryParam extends IHttpParam {
   // defaults to form
   style?:
-    | HttpParamStyles.form
-    | HttpParamStyles.spaceDelimited
-    | HttpParamStyles.pipeDelimited
-    | HttpParamStyles.deepObject;
+    | HttpParamStyles.Form
+    | HttpParamStyles.SpaceDelimited
+    | HttpParamStyles.PipeDelimited
+    | HttpParamStyles.DeepObject;
 
   allowEmptyValue?: boolean;
   allowReserved?: boolean;
@@ -64,12 +64,12 @@ export interface IHttpQueryParam extends IHttpParam {
 
 export interface IHttpHeaderParam extends IHttpParam {
   // defaults to simple
-  style?: HttpParamStyles.simple;
+  style?: HttpParamStyles.Simple;
 }
 
 export interface IHttpCookieParam extends IHttpParam {
   // defaults to form
-  style?: HttpParamStyles.form;
+  style?: HttpParamStyles.Form;
 }
 
 export interface IHttpEncoding {
@@ -78,10 +78,10 @@ export interface IHttpEncoding {
   headers?: IHttpHeaderParam[];
   // deafults to form
   style:
-    | HttpParamStyles.form
-    | HttpParamStyles.spaceDelimited
-    | HttpParamStyles.pipeDelimited
-    | HttpParamStyles.deepObject;
+    | HttpParamStyles.Form
+    | HttpParamStyles.SpaceDelimited
+    | HttpParamStyles.PipeDelimited
+    | HttpParamStyles.DeepObject;
 
   explode?: boolean;
   allowReserved?: boolean;
