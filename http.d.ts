@@ -140,6 +140,7 @@ export interface IHttpResponse {
 type HttpSecurityScheme =
   | IApiKeySecurityScheme
   | IBearerSecurityScheme
+  | IBasicSecurityScheme
   | IOauth2SecurityScheme
   | IOpenIdConnectSecurityScheme;
 
@@ -157,6 +158,11 @@ export interface IBearerSecurityScheme extends ISecurityScheme {
   type: 'http';
   scheme: 'bearer';
   bearerFormat?: string;
+}
+
+export interface IBasicSecurityScheme extends ISecurityScheme {
+  type: 'http';
+  scheme: 'basic';
 }
 
 export interface IOpenIdConnectSecurityScheme extends ISecurityScheme {
