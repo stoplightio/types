@@ -53,10 +53,10 @@ export interface IHttpPathParam extends IHttpParam {
 export interface IHttpQueryParam extends IHttpParam {
   // defaults to form
   style?:
-    | HttpParamStyles.Form
-    | HttpParamStyles.SpaceDelimited
-    | HttpParamStyles.PipeDelimited
-    | HttpParamStyles.DeepObject;
+  | HttpParamStyles.Form
+  | HttpParamStyles.SpaceDelimited
+  | HttpParamStyles.PipeDelimited
+  | HttpParamStyles.DeepObject;
 
   allowEmptyValue?: boolean;
   allowReserved?: boolean;
@@ -78,10 +78,10 @@ export interface IHttpEncoding {
   headers?: IHttpHeaderParam[];
   // deafults to form
   style:
-    | HttpParamStyles.Form
-    | HttpParamStyles.SpaceDelimited
-    | HttpParamStyles.PipeDelimited
-    | HttpParamStyles.DeepObject;
+  | HttpParamStyles.Form
+  | HttpParamStyles.SpaceDelimited
+  | HttpParamStyles.PipeDelimited
+  | HttpParamStyles.DeepObject;
 
   explode?: boolean;
   allowReserved?: boolean;
@@ -172,12 +172,14 @@ export interface IOpenIdConnectSecurityScheme extends ISecurityScheme {
 
 export interface IOauth2SecurityScheme extends ISecurityScheme {
   type: 'oauth2';
-  flows: Array<{
-    implicit: IOauth2ImplicitFlow;
-    password: IOauth2PasswordFlow;
-    clientCredentials: IOauth2ClientCredentialsFlow;
-    authorizationCode: IOauth2AuthorizationCodeFlow;
-  }>;
+  flows: IOathFlowObjects;
+}
+
+export interface IOathFlowObjects {
+  implicit?: IOauth2ImplicitFlow;
+  password?: IOauth2PasswordFlow;
+  clientCredentials?: IOauth2ClientCredentialsFlow;
+  authorizationCode?: IOauth2AuthorizationCodeFlow;
 }
 
 export interface IOauth2Flow {
