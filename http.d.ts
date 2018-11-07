@@ -172,10 +172,10 @@ export interface IOpenIdConnectSecurityScheme extends ISecurityScheme {
 
 export interface IOauth2SecurityScheme extends ISecurityScheme {
   type: 'oauth2';
-  flows: IOathFlowObjects;
+  flows: IOauthFlowObjects;
 }
 
-export interface IOathFlowObjects {
+export interface IOauthFlowObjects {
   implicit?: IOauth2ImplicitFlow;
   password?: IOauth2PasswordFlow;
   clientCredentials?: IOauth2ClientCredentialsFlow;
