@@ -189,19 +189,19 @@ export interface IOauth2Flow {
   }>;
 }
 
-export interface IOauth2ImplicitFlow {
+export interface IOauth2ImplicitFlow extends IOauth2Flow {
   authorizationUrl: string;
 }
 
-export interface IOauth2AuthorizationCodeFlow {
+export interface IOauth2AuthorizationCodeFlow extends IOauth2Flow {
   authorizationUrl: string;
   tokenUrl: string;
 }
 
-export interface IOauth2PasswordFlow {
+export interface IOauth2PasswordFlow extends IOauth2Flow {
   tokenUrl: string;
 }
 
-export interface IOauth2ClientCredentialsFlow {
+export interface IOauth2ClientCredentialsFlow extends IOauth2Flow {
   tokenUrl: string;
 }
