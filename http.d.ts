@@ -183,7 +183,7 @@ export interface IOauthFlowObjects {
 }
 
 export interface IOauth2Flow {
-  refreshUrl: string;
+  refreshUrl?: string;
   scopes: Array<{
     [name: string]: string;
   }>;
