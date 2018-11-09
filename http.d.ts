@@ -53,10 +53,10 @@ export interface IHttpPathParam extends IHttpParam {
 export interface IHttpQueryParam extends IHttpParam {
   // defaults to form
   style?:
-    | HttpParamStyles.Form
-    | HttpParamStyles.SpaceDelimited
-    | HttpParamStyles.PipeDelimited
-    | HttpParamStyles.DeepObject;
+  | HttpParamStyles.Form
+  | HttpParamStyles.SpaceDelimited
+  | HttpParamStyles.PipeDelimited
+  | HttpParamStyles.DeepObject;
 
   allowEmptyValue?: boolean;
   allowReserved?: boolean;
@@ -78,10 +78,10 @@ export interface IHttpEncoding {
   headers?: IHttpHeaderParam[];
   // deafults to form
   style:
-    | HttpParamStyles.Form
-    | HttpParamStyles.SpaceDelimited
-    | HttpParamStyles.PipeDelimited
-    | HttpParamStyles.DeepObject;
+  | HttpParamStyles.Form
+  | HttpParamStyles.SpaceDelimited
+  | HttpParamStyles.PipeDelimited
+  | HttpParamStyles.DeepObject;
 
   explode?: boolean;
   allowReserved?: boolean;
@@ -140,6 +140,7 @@ export interface IHttpResponse {
 type HttpSecurityScheme =
   | IApiKeySecurityScheme
   | IBearerSecurityScheme
+  | IBasicSecurityScheme
   | IOauth2SecurityScheme
   | IOpenIdConnectSecurityScheme;
 
@@ -159,6 +160,11 @@ export interface IBearerSecurityScheme extends ISecurityScheme {
   bearerFormat?: string;
 }
 
+export interface IBasicSecurityScheme extends ISecurityScheme {
+  type: 'http';
+  scheme: 'basic';
+}
+
 export interface IOpenIdConnectSecurityScheme extends ISecurityScheme {
   type: 'openIdConnect';
   openIdConnectUrl: string;
@@ -166,34 +172,36 @@ export interface IOpenIdConnectSecurityScheme extends ISecurityScheme {
 
 export interface IOauth2SecurityScheme extends ISecurityScheme {
   type: 'oauth2';
-  flows: Array<{
-    implicit: IOauth2ImplicitFlow;
-    password: IOauth2PasswordFlow;
-    clientCredentials: IOauth2ClientCredentialsFlow;
-    authorizationCode: IOauth2AuthorizationCodeFlow;
-  }>;
+  flows: IOauthFlowObjects;
+}
+
+export interface IOauthFlowObjects {
+  implicit?: IOauth2ImplicitFlow;
+  password?: IOauth2PasswordFlow;
+  clientCredentials?: IOauth2ClientCredentialsFlow;
+  authorizationCode?: IOauth2AuthorizationCodeFlow;
 }
 
 export interface IOauth2Flow {
-  refreshUrl: string;
+  refreshUrl?: string;
   scopes: Array<{
     [name: string]: string;
   }>;
 }
 
-export interface IOauth2ImplicitFlow {
+export interface IOauth2ImplicitFlow extends IOauth2Flow {
   authorizationUrl: string;
 }
 
-export interface IOauth2AuthorizationCodeFlow {
+export interface IOauth2AuthorizationCodeFlow extends IOauth2Flow {
   authorizationUrl: string;
   tokenUrl: string;
 }
 
-export interface IOauth2PasswordFlow {
+export interface IOauth2PasswordFlow extends IOauth2Flow {
   tokenUrl: string;
 }
 
-export interface IOauth2ClientCredentialsFlow {
+export interface IOauth2ClientCredentialsFlow extends IOauth2Flow {
   tokenUrl: string;
 }
