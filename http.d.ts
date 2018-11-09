@@ -111,7 +111,7 @@ export interface IHttpLink {
 export interface IHttpRequestBody {
   description?: string;
   required?: boolean;
-  content: IHttpContent[];
+  contents: IHttpContent[];
 }
 
 export interface IHttpRequest {
