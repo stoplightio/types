@@ -115,10 +115,10 @@ export interface IHttpRequestBody {
 }
 
 export interface IHttpRequest {
-  path?: IHttpPathParam[];
-  query?: IHttpQueryParam[];
-  headers?: IHttpHeaderParam[];
-  cookie?: IHttpCookieParam[];
+  pathParams?: IHttpPathParam[];
+  queryParams?: IHttpQueryParam[];
+  headerParams?: IHttpHeaderParam[];
+  cookieParams?: IHttpCookieParam[];
   body?: IHttpRequestBody;
 }
 
