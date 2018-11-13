@@ -117,7 +117,7 @@ export interface IHttpRequestBody {
 export interface IHttpRequest {
   path?: IHttpPathParam[];
   query?: IHttpQueryParam[];
-  header?: IHttpHeaderParam[];
+  headers?: IHttpHeaderParam[];
   cookie?: IHttpCookieParam[];
   body?: IHttpRequestBody;
 }
