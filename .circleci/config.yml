@@ -28,7 +28,7 @@ jobs:
     steps:
       - checkout
       - run: yarn
-      # - run: yarn build
+      - run: yarn build
       - run: yarn build.docs
       - run: yarn release
       - run: yarn release.docs
