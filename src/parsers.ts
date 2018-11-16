@@ -1,4 +1,4 @@
-import { IValidation } from '../validations';
+import { IValidation } from './validations';
 
 export type SourceMapParser<T = any> = (value: string) => IParserResult<T>;
 

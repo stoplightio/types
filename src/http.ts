@@ -1,6 +1,6 @@
 import { INode } from './node';
-import { IServer } from './server';
 import { ISchema } from './schema';
+import { IServer } from './server';
 
 export interface IHttpOperation extends INode {
   method: string;
@@ -35,7 +35,7 @@ export interface IHttpParam {
   };
 }
 
-declare const enum HttpParamStyles {
+export const enum HttpParamStyles {
   Simple = 'simple',
   Matrix = 'matrix',
   Label = 'label',
@@ -53,10 +53,10 @@ export interface IHttpPathParam extends IHttpParam {
 export interface IHttpQueryParam extends IHttpParam {
   // defaults to form
   style?:
-  | HttpParamStyles.Form
-  | HttpParamStyles.SpaceDelimited
-  | HttpParamStyles.PipeDelimited
-  | HttpParamStyles.DeepObject;
+    | HttpParamStyles.Form
+    | HttpParamStyles.SpaceDelimited
+    | HttpParamStyles.PipeDelimited
+    | HttpParamStyles.DeepObject;
 
   allowEmptyValue?: boolean;
   allowReserved?: boolean;
@@ -78,10 +78,10 @@ export interface IHttpEncoding {
   headers?: IHttpHeaderParam[];
   // deafults to form
   style:
-  | HttpParamStyles.Form
-  | HttpParamStyles.SpaceDelimited
-  | HttpParamStyles.PipeDelimited
-  | HttpParamStyles.DeepObject;
+    | HttpParamStyles.Form
+    | HttpParamStyles.SpaceDelimited
+    | HttpParamStyles.PipeDelimited
+    | HttpParamStyles.DeepObject;
 
   explode?: boolean;
   allowReserved?: boolean;
