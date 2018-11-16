@@ -7,7 +7,7 @@ export interface IHttpOperation extends INode {
   path: string;
   responses: IHttpResponse[];
   servers?: IServer[];
-  request?: IHttpRequest;
+  request?: IHttpRequestParams;
   security?: HttpSecurityScheme[];
   deprecated?: boolean;
 }
@@ -114,7 +114,7 @@ export interface IHttpRequestBody {
   contents: IHttpContent[];
 }
 
-export interface IHttpRequest {
+export interface IHttpRequestParams {
   path?: IHttpPathParam[];
   query?: IHttpQueryParam[];
   headers?: IHttpHeaderParam[];
