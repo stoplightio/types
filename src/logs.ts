@@ -1,4 +1,13 @@
 export const enum LogLevel {
+  Trace = 'trace',
+  Debug = 'debug',
+  Info = 'info',
+  Warn = 'warn',
+  Error = 'error',
+  Fatal = 'fatal',
+}
+
+export const enum LogLevelNum {
   Trace = 10,
   Debug = 20,
   Info = 30,
