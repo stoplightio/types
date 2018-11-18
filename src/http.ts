@@ -1,6 +1,6 @@
-import { INode } from './node';
-import { ISchema } from './schema';
-import { IServer } from './server';
+import { INode, INodeExample } from './graph';
+import { ISchema } from './schemas';
+import { IServer } from './servers';
 
 export interface IHttpOperation extends INode {
   method: string;
@@ -10,14 +10,6 @@ export interface IHttpOperation extends INode {
   request?: IHttpRequestParams;
   security?: HttpSecurityScheme[];
   deprecated?: boolean;
-}
-
-export interface IExample {
-  key: string;
-  summary?: string;
-  description?: string;
-  value?: any;
-  externalValue?: any;
 }
 
 // Inspired by: https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#parameterObject
@@ -90,7 +82,7 @@ export interface IHttpEncoding {
 export interface IHttpContent {
   mediaType: string;
   schema?: ISchema;
-  examples?: IExample[];
+  examples?: INodeExample[];
   encodings?: IHttpEncoding[];
 }
 

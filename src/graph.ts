@@ -16,3 +16,11 @@ export interface INodeVariable {
   description?: string;
   enum?: string[];
 }
+
+export interface INodeExample {
+  key: string;
+  summary?: string;
+  description?: string;
+  value?: any;
+  externalValue?: any;
+}
