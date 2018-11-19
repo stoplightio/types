@@ -1,6 +1,7 @@
 export interface INode {
   id: string;
-  iid?: string; // An internal identifier. for example the operationId property in OAS
+  /** An internal identifier. For example, the operationId property in OAS. */
+  iid?: string;
   tags?: INodeTag[];
   summary?: string;
   description?: string;

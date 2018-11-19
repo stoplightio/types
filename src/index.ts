@@ -1,4 +1,5 @@
 export * from './graph';
+export * from './http-operation';
 export * from './http';
 export * from './logs';
 export * from './parsers';
