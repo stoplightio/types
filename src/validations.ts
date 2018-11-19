@@ -1,26 +1,26 @@
 import { IPathPosition, ObjPath } from './parsers';
 
 export enum ValidationSeverity {
-  Info = 'info',
-  Warn = 'warn',
-  Error = 'error',
-}
-
-export enum ValidationSeverityNum {
   Info = 30,
   Warn = 40,
   Error = 50,
+}
+
+export enum ValidationSeverityLabel {
+  Info = 'info',
+  Warn = 'warn',
+  Error = 'error',
 }
 
 export interface IValidation {
   /** Name identifier for this type of validation. */
   name: string;
 
-  /** Validation severity as a pretty string. */
+  /** Validation severity as a number. */
   severity: ValidationSeverity;
 
-  /** Validation severity as a number. */
-  severityNum: ValidationSeverityNum;
+  /** Optional validation severity as a pretty string. */
+  severityLabel: ValidationSeverityLabel;
 
   /** Optional information about this error. */
   message?: string;
