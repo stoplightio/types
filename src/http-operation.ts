@@ -1,3 +1,4 @@
+import { Dictionary } from './basic';
 import { INode, INodeExample } from './graph';
 import { ISchema } from './schemas';
 import { IServer } from './servers';
@@ -66,6 +67,7 @@ export interface IHttpOpEncoding {
   property: string;
   mediaType?: string;
   headers?: IHttpOpHeaderParam[];
+
   // deafults to form
   style:
     | HttpOpParamStyles.Form
@@ -174,9 +176,7 @@ export interface IOauthFlowObjects {
 
 export interface IOauth2Flow {
   refreshUrl?: string;
-  scopes: Array<{
-    [name: string]: string;
-  }>;
+  scopes: Array<Dictionary<string, string>>;
 }
 
 export interface IOauth2ImplicitFlow extends IOauth2Flow {

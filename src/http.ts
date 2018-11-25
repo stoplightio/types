@@ -1,3 +1,5 @@
+import { Dictionary } from './basic';
+
 /**
  * Note: inspired by the Axios typings, since that is what Stoplight generally uses under the hood.
  */
@@ -14,21 +16,16 @@ export interface IHttpRequest<T = any> {
   /** `baseUrl` will be prepended to `url` unless `url` is absolute. */
   baseUrl: string;
 
-  headers?: IHttpNameValue;
-  query?: IHttpNameValues;
+  headers?: HttpNameValue;
+  query?: HttpNameValues;
   body?: T;
 }
 
 export interface IHttpResponse<T = any> {
   status: number;
-  headers: IHttpNameValue;
+  headers: HttpNameValue;
   body?: T;
 }
 
-export interface IHttpNameValue {
-  [name: string]: string;
-}
-
-export interface IHttpNameValues {
-  [name: string]: string | string[];
-}
+export type HttpNameValue = Dictionary<string, string>;
+export type HttpNameValues = Dictionary<string | string[], string>;

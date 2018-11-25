@@ -1,3 +1,4 @@
+import { Dictionary } from './basic';
 import { IValidation } from './validations';
 
 export type SourceMapParser<T = any> = (value: string) => IParserResult<T>;
@@ -15,9 +16,7 @@ export interface IPathPosition {
   end?: IPosition;
 }
 
-export interface IParserResultPointers {
-  [jsonPath: string]: IPathPosition;
-}
+export type IParserResultPointers = Dictionary<IPathPosition, string>;
 
 export interface IParserResult<T = any> {
   data: T;
