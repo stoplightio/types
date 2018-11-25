@@ -21,10 +21,8 @@ export interface IHttpOpParam {
   explode?: boolean;
   deprecated?: boolean;
 
-  // most of the type, params from oas2/oas3 will simply be converted to content with one '*' key
-  content: {
-    [mediaType: string]: IHttpOpContent;
-  };
+  // most of the type, params from oas2/oas3 will simply be converted to a single content object with mediaType = '*'
+  contents: IHttpOpContent[];
 }
 
 export const enum HttpOpParamStyles {
