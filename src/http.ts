@@ -28,4 +28,4 @@ export interface IHttpResponse<T = any> {
 }
 
 export type HttpNameValue = Dictionary<string, string>;
-export type HttpNameValues = Dictionary<string | string[], string>;
+export type HttpNameValues = Dictionary<string[], string>;
