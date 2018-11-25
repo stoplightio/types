@@ -25,7 +25,7 @@ export interface IHttpOpParam {
   contents: IHttpOpContent[];
 }
 
-export const enum HttpOpParamStyles {
+export enum HttpOpParamStyles {
   Simple = 'simple',
   Matrix = 'matrix',
   Label = 'label',
@@ -127,7 +127,7 @@ export interface IHttpOpResponse {
  * Security
  */
 
-type HttpOpSecurityScheme =
+export type HttpOpSecurityScheme =
   | IApiKeySecurityScheme
   | IBearerSecurityScheme
   | IBasicSecurityScheme
