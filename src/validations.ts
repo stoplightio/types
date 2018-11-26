@@ -12,7 +12,7 @@ export enum ValidationSeverityLabel {
   Error = 'error',
 }
 
-export interface IValidation {
+export interface IValidationResult {
   /** Name identifier for this type of validation. */
   name: string;
 
