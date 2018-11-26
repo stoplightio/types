@@ -1,5 +1,5 @@
 import { Dictionary } from './basic';
-import { IValidation } from './validations';
+import { IValidationResult } from './validations';
 
 export type SourceMapParser<T = any> = (value: string) => IParserResult<T>;
 
@@ -21,5 +21,5 @@ export type IParserResultPointers = Dictionary<IPathPosition, string>;
 export interface IParserResult<T = any> {
   data: T;
   pointers: IParserResultPointers;
-  validations: IValidation[];
+  validations: IValidationResult[];
 }

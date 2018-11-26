@@ -1,6 +1,6 @@
 export * from './basic';
 export * from './graph';
-export * from './http-operation';
+export * from './http-spec';
 export * from './http';
 export * from './logs';
 export * from './parsers';
