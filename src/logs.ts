@@ -7,6 +7,15 @@ export const enum LogLevel {
   Fatal = 60,
 }
 
+export const enum LogLevelLabel {
+  Trace = 'trace',
+  Debug = 'debug',
+  Info = 'info',
+  Warn = 'warn',
+  Error = 'error',
+  Fatal = 'fatal',
+}
+
 // TODO: more formal logging system, a couple of options to do the heavy lifting? something like this?
 // https://github.com/pinojs/pino
 // export interface ILog<T = any> {

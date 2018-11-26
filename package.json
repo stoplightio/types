@@ -27,7 +27,10 @@
     "release": "sl-scripts release",
     "release.docs": "sl-scripts release:docs",
     "release.dryRun": "sl-scripts release --dry-run --debug",
-    "test": "yarn lint"
+    "test": "sl-scripts test",
+    "test.prod": "yarn lint && yarn test --coverage --no-cache",
+    "test.update": "yarn test --updateSnapshot",
+    "test.watch": "yarn test --watch"
   },
   "devDependencies": {
     "@stoplight/scripts": "1.2.3",
