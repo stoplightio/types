@@ -18,10 +18,16 @@ export interface INodeVariable {
   enum?: string[];
 }
 
-export interface INodeExample {
+interface INodeExampleBase {
   key: string;
   summary?: string;
   description?: string;
-  value?: any;
-  externalValue?: any;
+}
+
+export interface INodeExample extends INodeExampleBase {
+  value: any;
+}
+
+export interface INodeExternalExample extends INodeExampleBase {
+  externalValue: string;
 }
