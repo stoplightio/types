@@ -3,7 +3,6 @@ import { INode, INodeExample, INodeExternalExample } from './graph';
 import { ISchema } from './schemas';
 import { IServer } from './servers';
 
-
 /**
  * HTTP Service
  */
