@@ -4,6 +4,14 @@ import { ISchema } from './schemas';
 import { IServer } from './servers';
 
 /**
+ * HTTP Service
+ */
+
+export interface IHttpService extends INode {
+  name: string;
+}
+
+/**
  * HTTP Operation
  */
 
