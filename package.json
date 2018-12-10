@@ -33,11 +33,11 @@
     "test.watch": "yarn test --watch"
   },
   "devDependencies": {
-    "@stoplight/scripts": "1.2.3",
-    "typescript": "3.1.6"
+    "@stoplight/scripts": "3.1.0",
+    "typescript": "3.2.2"
   },
   "lint-staged": {
-    "*.{ts,tsx}$": [
+    "*.{ts,tsx}": [
       "yarn lint.fix",
       "git add"
     ]
