@@ -20,7 +20,7 @@
   },
   "scripts": {
     "build": "sl-scripts build",
-    "build.docs": "sl-scripts build:tsdoc",
+    "build.docs": "sl-scripts build:typedoc",
     "commit": "git-cz",
     "lint": "sl-scripts lint",
     "lint.fix": "yarn lint --fix",
