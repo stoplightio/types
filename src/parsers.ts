@@ -50,7 +50,7 @@ export interface IRange {
 }
 
 export interface ILocation {
-  uri: DocumentUri;
+  uri?: DocumentUri;
   range: IRange;
 }
 
