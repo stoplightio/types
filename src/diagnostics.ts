@@ -1,4 +1,4 @@
-import { ILocation, IRange } from './parsers';
+import { ILocation, IRange, JSONPath } from './parsers';
 
 /**
  * Represents the severity of diagnostics.
@@ -49,6 +49,11 @@ export interface IDiagnostic {
    * diagnostic, e.g. 'typescript' or 'super lint'.
    */
   source?: string;
+
+  /**
+   * The JSONPath pointing to property to which this diagnostic applies.
+   */
+  path?: JSONPath;
 
   /**
    * A code or identifier for this diagnostics. Will not be surfaced
