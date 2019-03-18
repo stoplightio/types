@@ -1,4 +1,4 @@
-import { IDiagnostic } from './validations';
+import { IDiagnostic } from './diagnostics';
 
 export type SourceMapParser<T = any> = (value: string) => IParserResult<T>;
 
