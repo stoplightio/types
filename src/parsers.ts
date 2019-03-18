@@ -10,8 +10,6 @@ export interface IParserResult<T = any> {
   data: T;
   diagnostics: IDiagnostic[];
 
-  // One of these, not sure? jsonc uses offset, language server spec uses line + character :/
-  // whatever we choose we need to be able to support for all of our parsers (json, yaml, markdown)
   getJsonPathForPosition(position: IPosition): JSONPath | undefined;
 
   // ILocation comes from the language server specification
