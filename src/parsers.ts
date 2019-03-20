@@ -1,6 +1,6 @@
 import { IDiagnostic } from './diagnostics';
 
-export type SourceMapParser<T = any> = (value: string) => IParserResult<T>;
+export type SourceMapParser<T = unknown, A extends object = object> = (value: string) => IParserResult<T, A>;
 
 export type DocumentUri = string;
 export type Segment = string | number;
@@ -13,7 +13,7 @@ export interface IParserResult<T = any, A extends object = object> extends IPars
 export interface IParserASTResult<T = any, A extends object = object> {
   data: T;
   ast: A;
-  lineMap: number[];
+  lineMap: Map<number, number>;
 }
 
 export type GetJsonPathForPosition<A extends object> = (
