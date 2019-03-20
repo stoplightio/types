@@ -6,15 +6,26 @@ export type DocumentUri = string;
 export type Segment = string | number;
 export type JSONPath = Segment[];
 
-export interface IParserResult<T = any> {
-  data: T;
+export interface IParserResult<T = any, A extends object = object> extends IParserASTResult<T, A> {
   diagnostics: IDiagnostic[];
-
-  getJsonPathForPosition(position: IPosition): JSONPath | undefined;
-
-  // ILocation comes from the language server specification
-  getLocationForJsonPath(path: JSONPath): ILocation | undefined;
 }
+
+export interface IParserASTResult<T = any, A extends object = object> {
+  data: T;
+  ast: A;
+  lineMap: number[];
+}
+
+export type GetJsonPathForPosition<A extends object> = (
+  result: IParserASTResult<unknown, A>,
+  position: IPosition
+) => JSONPath | undefined;
+
+// ILocation comes from the language server specification
+export type GetLocationForJsonPath<A extends object> = (
+  result: IParserASTResult<unknown, A>,
+  path: JSONPath
+) => ILocation | undefined;
 
 export interface IPosition {
   /**
