@@ -1,4 +1,4 @@
-import { ILocation, IRange, JSONPath } from './parsers';
+import { ILocation, IRange, JsonPath } from './parsers';
 
 /**
  * Represents the severity of diagnostics.
@@ -53,7 +53,7 @@ export interface IDiagnostic {
   /**
    * The JSONPath pointing to property to which this diagnostic applies.
    */
-  path?: JSONPath;
+  path?: JsonPath;
 
   /**
    * A code or identifier for this diagnostics. Will not be surfaced

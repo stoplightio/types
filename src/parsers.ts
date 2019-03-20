@@ -4,7 +4,7 @@ export type SourceMapParser<T = any> = (value: string) => IParserResult<T>;
 
 export type DocumentUri = string;
 export type Segment = string | number;
-export type JSONPath = Segment[];
+export type JsonPath = Segment[];
 
 export interface IParserResult<T = any, A extends object = object> extends IParserASTResult<T, A> {
   diagnostics: IDiagnostic[];
@@ -19,12 +19,12 @@ export interface IParserASTResult<T = any, A extends object = object> {
 export type GetJsonPathForPosition<A extends object> = (
   result: IParserASTResult<unknown, A>,
   position: IPosition
-) => JSONPath | undefined;
+) => JsonPath | undefined;
 
 // ILocation comes from the language server specification
 export type GetLocationForJsonPath<A extends object> = (
   result: IParserASTResult<unknown, A>,
-  path: JSONPath
+  path: JsonPath
 ) => ILocation | undefined;
 
 export interface IPosition {
@@ -66,5 +66,5 @@ export interface ILocation {
 }
 
 export interface IJsonLocation extends ILocation {
-  path: JSONPath;
+  path: JsonPath;
 }
