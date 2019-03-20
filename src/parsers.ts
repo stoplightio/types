@@ -1,29 +1,31 @@
 import { IDiagnostic } from './diagnostics';
 
-export type SourceMapParser<T = unknown, A extends object = object> = (value: string) => IParserResult<T, A>;
+export type SourceMapParser<T = unknown, A extends object = object, L = undefined> = (
+  value: string
+) => IParserResult<T, A, L>;
 
 export type DocumentUri = string;
 export type Segment = string | number;
 export type JsonPath = Segment[];
 
-export interface IParserResult<T = any, A extends object = object> extends IParserASTResult<T, A> {
+export interface IParserResult<T = any, A extends object = object, L = undefined> extends IParserASTResult<T, A, L> {
   diagnostics: IDiagnostic[];
 }
 
-export interface IParserASTResult<T = any, A extends object = object> {
+export interface IParserASTResult<T = unknown, A extends object = object, L = undefined> {
   data: T;
   ast: A;
-  lineMap: Map<number, number>;
+  lineMap: L;
 }
 
-export type GetJsonPathForPosition<A extends object> = (
-  result: IParserASTResult<unknown, A>,
+export type GetJsonPathForPosition<A extends object, L> = (
+  result: IParserASTResult<unknown, A, L>,
   position: IPosition
 ) => JsonPath | undefined;
 
 // ILocation comes from the language server specification
-export type GetLocationForJsonPath<A extends object> = (
-  result: IParserASTResult<unknown, A>,
+export type GetLocationForJsonPath<A extends object, L> = (
+  result: IParserASTResult<unknown, A, L>,
   path: JsonPath
 ) => ILocation | undefined;
 
