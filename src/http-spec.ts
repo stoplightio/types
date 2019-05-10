@@ -7,44 +7,8 @@ import { IServer } from './servers';
  * HTTP Service
  */
 
-interface IOAuthFlow {
-  authorizationUrl: string;
-  tokenUrl: string;
-  refreshUrl?: string;
-  scopes: Dictionary<string>;
-}
-
-type SecurityDefinition =
-  | {
-      description?: string;
-    }
-  | {
-      type: 'apiKey';
-      name: string;
-      in: 'query' | 'header' | 'cookie';
-    }
-  | {
-      type: 'openIdConnect';
-      openIdConnectUrl: string;
-    }
-  | {
-      type: 'http';
-      scheme: string;
-      bearerFormat?: string;
-    }
-  | {
-      type: 'oauth2';
-      flows: {
-        implicit: IOAuthFlow;
-        password: IOAuthFlow;
-        clientCredentials: IOAuthFlow;
-        authorizationCode: IOAuthFlow;
-      };
-    };
-
 export interface IHttpService extends INode {
   name: string;
-  description?: string;
   termsOfService?: string;
   contact?: {
     name?: string;
@@ -56,9 +20,9 @@ export interface IHttpService extends INode {
     url?: string;
   };
   version: string;
-  servers: Array<{ url: string; description?: string }>;
-  security?: Dictionary<string[], string>;
-  securityDefinitions?: Dictionary<SecurityDefinition, string>;
+  servers: IServer[];
+  security: string[];
+  securitySchemes: HttpSecurityScheme[];
 }
 
 /**
