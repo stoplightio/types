@@ -16,7 +16,7 @@ export interface IHttpService extends INode {
     email?: string;
   };
   license?: {
-    name?: string;
+    name: string;
     url?: string;
   };
   version: string;
