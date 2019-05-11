@@ -9,6 +9,20 @@ import { IServer } from './servers';
 
 export interface IHttpService extends INode {
   name: string;
+  termsOfService?: string;
+  contact?: {
+    name?: string;
+    url?: string;
+    email?: string;
+  };
+  license?: {
+    name: string;
+    url?: string;
+  };
+  version: string;
+  servers: IServer[];
+  security: string[];
+  securitySchemes: HttpSecurityScheme[];
 }
 
 /**
