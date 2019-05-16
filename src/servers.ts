@@ -6,5 +6,4 @@ export interface IServer {
   name?: string;
   description?: string;
   variables?: Dictionary<INodeVariable, string>;
-  version?: string;
 }
