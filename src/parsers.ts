@@ -26,7 +26,8 @@ export type GetJsonPathForPosition<A extends object, L = unknown> = (
 // ILocation comes from the language server specification
 export type GetLocationForJsonPath<A extends object, L = unknown> = (
   result: IParserASTResult<unknown, A, L>,
-  path: JsonPath
+  path: JsonPath,
+  closest?: boolean
 ) => ILocation | undefined;
 
 export interface IPosition {
