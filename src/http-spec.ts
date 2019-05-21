@@ -21,7 +21,7 @@ export interface IHttpService extends INode {
   };
   version: string;
   servers: IServer[];
-  security: Dictionary<string[], string>;
+  security: HttpSecurityScheme[];
   securitySchemes: HttpSecurityScheme[];
 }
 
