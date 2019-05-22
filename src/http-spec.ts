@@ -195,7 +195,7 @@ export interface IOauthFlowObjects {
 }
 
 export interface IOauth2Flow {
-  scopes: Array<Dictionary<string, string>>;
+  scopes: Dictionary<string, string>;
   refreshUrl?: string;
 }
 
