@@ -9,6 +9,10 @@ import { IServer } from './servers';
 
 export interface IHttpService extends INode {
   name: string;
+  version: string;
+  servers: IServer[];
+  security: HttpSecurityScheme[];
+  securitySchemes: HttpSecurityScheme[];
   termsOfService?: string;
   contact?: {
     name?: string;
@@ -19,10 +23,6 @@ export interface IHttpService extends INode {
     name: string;
     url?: string;
   };
-  version: string;
-  servers: IServer[];
-  security: HttpSecurityScheme[];
-  securitySchemes: HttpSecurityScheme[];
 }
 
 /**
@@ -49,7 +49,7 @@ export interface IHttpOperationRequest {
 
 // https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#requestBodyObject
 export interface IHttpOperationRequestBody {
-  contents: IHttpContent[];
+  contents: IMediaTypeContent[];
   required?: boolean;
   description?: string;
 }
@@ -59,7 +59,7 @@ export interface IHttpOperationResponse {
   // Examples: 200, 2XX, 4XX, XXX ("default" in OAS)
   // When mocking, should select most specific defined code
   code: string;
-  contents: IHttpContent[];
+  contents: IMediaTypeContent[];
   headers: IHttpHeaderParam[];
   description?: string;
 }
@@ -72,13 +72,11 @@ export interface IHttpOperationResponse {
 export interface IHttpParam {
   name: string;
   style: HttpParamStyles;
+  content: IHttpContent;
   description?: string;
   required?: boolean;
   explode?: boolean;
   deprecated?: boolean;
-
-  // most of the type, params from oas2/oas3 will simply be converted to a single content object with mediaType = '*'
-  contents: IHttpContent[];
 }
 
 export enum HttpParamStyles {
@@ -123,10 +121,13 @@ export interface IHttpCookieParam extends IHttpParam {
  */
 
 export interface IHttpContent {
-  mediaType: string;
   schema?: ISchema;
   examples: Array<INodeExample | INodeExternalExample>;
   encodings: IHttpEncoding[];
+}
+
+export interface IMediaTypeContent extends IHttpContent {
+  mediaType: string;
 }
 
 export interface IHttpEncoding {
