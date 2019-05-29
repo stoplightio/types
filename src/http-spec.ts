@@ -1,8 +1,8 @@
+import { JSONSchema7 } from 'json-schema';
 import { Dictionary } from './basic';
 import { INode, INodeExample, INodeExternalExample } from './graph';
 import { ISchema } from './schemas';
 import { IServer } from './servers';
-
 /**
  * HTTP Service
  */
@@ -45,6 +45,7 @@ export interface IHttpOperationRequest {
   headers: IHttpHeaderParam[];
   cookie: IHttpCookieParam[];
   body?: IHttpOperationRequestBody;
+  parametersSchema: JSONSchema7;
 }
 
 // https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#requestBodyObject
