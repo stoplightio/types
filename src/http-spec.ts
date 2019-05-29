@@ -39,13 +39,17 @@ export interface IHttpOperation extends INode {
   deprecated?: boolean;
 }
 
+export type IParametersWithSchema<T> = {
+  values: T[];
+  schema: JSONSchema7;
+};
+
 export interface IHttpOperationRequest {
-  path: IHttpPathParam[];
-  query: IHttpQueryParam[];
-  headers: IHttpHeaderParam[];
-  cookie: IHttpCookieParam[];
+  path: IParametersWithSchema<IHttpPathParam>;
+  query: IParametersWithSchema<IHttpQueryParam>;
+  headers: IParametersWithSchema<IHttpHeaderParam>;
+  cookie: IParametersWithSchema<IHttpCookieParam>;
   body?: IHttpOperationRequestBody;
-  parametersSchema: JSONSchema7;
 }
 
 // https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#requestBodyObject
@@ -122,13 +126,13 @@ export interface IHttpCookieParam extends IHttpParam {
  */
 
 export interface IHttpContent {
-  schema?: ISchema;
   examples: Array<INodeExample | INodeExternalExample>;
   encodings: IHttpEncoding[];
 }
 
 export interface IMediaTypeContent extends IHttpContent {
   mediaType: string;
+  schema?: ISchema;
 }
 
 export interface IHttpEncoding {
