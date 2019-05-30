@@ -4,6 +4,5 @@ export * from './http-spec';
 export * from './http';
 export * from './logs';
 export * from './parsers';
-export * from './schemas';
 export * from './servers';
 export * from './diagnostics';
