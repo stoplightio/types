@@ -1,6 +1,6 @@
+import { JSONSchema4, JSONSchema6, JSONSchema7 } from 'json-schema';
 import { Dictionary } from './basic';
 import { INode, INodeExample, INodeExternalExample } from './graph';
-import { ISchema } from './schemas';
 import { IServer } from './servers';
 
 /**
@@ -121,7 +121,7 @@ export interface IHttpCookieParam extends IHttpParam {
  */
 
 export interface IHttpContent {
-  schema?: ISchema;
+  schema?: JSONSchema4 | JSONSchema6 | JSONSchema7;
   examples: Array<INodeExample | INodeExternalExample>;
   encodings: IHttpEncoding[];
 }
