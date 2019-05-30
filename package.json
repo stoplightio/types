@@ -1,6 +1,6 @@
 {
   "name": "@stoplight/types",
-  "version": "0.0.0",
+  "version": "9999.9999.9998",
   "description": "Common typings for the Stoplight ecosystem.",
   "keywords": [],
   "sideEffects": false,
@@ -13,13 +13,13 @@
   },
   "license": "Apache-2.0",
   "files": [
-    "**/*"
+    "dist/*"
   ],
   "engines": {
     "node": ">=8"
   },
   "scripts": {
-    "build": "sl-scripts build",
+    "build": "tsc -p ./tsconfig.build.json -d",
     "commit": "git-cz",
     "lint": "tslint -c tslint.json 'src/**/*.ts?'",
     "lint.fix": "yarn lint --fix",
