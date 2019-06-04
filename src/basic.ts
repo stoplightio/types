@@ -20,9 +20,6 @@ export type DeepReadonly<T> = T extends Primitive
   : T extends Array<infer U> ? ReadonlyArray<U> : T extends Function ? T : DeepReadonlyObject<T>;
 type DeepReadonlyObject<T> = { readonly [P in keyof T]: DeepReadonly<T[P]> };
 
-/** Omit given key in object type */
-export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
-
 /** Easy create opaque types ie. types that are subset of their original types (ex: positive numbers, uppercased string) */
 export type Opaque<K, T> = T & { __TYPE__: K };
 
