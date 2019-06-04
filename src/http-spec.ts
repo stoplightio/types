@@ -69,10 +69,11 @@ export interface IHttpOperationResponse {
  */
 
 // Inspired by: https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#parameterObject
-export interface IHttpParam {
+export interface IHttpParam extends IHttpContent {
   name: string;
   style: HttpParamStyles;
   content?: IHttpContent;
+  description?: string;
   explode?: boolean;
   required?: boolean;
   deprecated?: boolean;
@@ -121,8 +122,8 @@ export interface IHttpCookieParam extends IHttpParam {
 
 export interface IHttpContent {
   schema?: JSONSchema4 | JSONSchema6 | JSONSchema7;
-  examples: Array<INodeExample | INodeExternalExample>;
-  encodings: IHttpEncoding[];
+  examples?: Array<INodeExample | INodeExternalExample>;
+  encodings?: IHttpEncoding[];
 }
 
 export interface IMediaTypeContent extends IHttpContent {
