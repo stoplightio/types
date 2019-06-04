@@ -74,6 +74,7 @@ export interface IHttpParam {
   style: HttpParamStyles;
   content?: IHttpContent;
   explode?: boolean;
+  required?: boolean;
   deprecated?: boolean;
 }
 
