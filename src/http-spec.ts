@@ -1,6 +1,6 @@
+import { JSONSchema4, JSONSchema6, JSONSchema7 } from 'json-schema';
 import { Dictionary } from './basic';
 import { INode, INodeExample, INodeExternalExample } from './graph';
-import { ISchema } from './schemas';
 import { IServer } from './servers';
 
 /**
@@ -10,9 +10,9 @@ import { IServer } from './servers';
 export interface IHttpService extends INode {
   name: string;
   version: string;
-  servers: IServer[];
-  security: HttpSecurityScheme[];
-  securitySchemes: HttpSecurityScheme[];
+  servers?: IServer[];
+  security?: HttpSecurityScheme[];
+  securitySchemes?: HttpSecurityScheme[];
   termsOfService?: string;
   contact?: {
     name?: string;
@@ -32,24 +32,24 @@ export interface IHttpService extends INode {
 export interface IHttpOperation extends INode {
   method: string;
   path: string;
-  request: IHttpOperationRequest;
-  responses: IHttpOperationResponse[];
-  servers: IServer[];
-  security: HttpSecurityScheme[];
+  request?: IHttpOperationRequest;
+  responses?: IHttpOperationResponse[];
+  servers?: IServer[];
+  security?: HttpSecurityScheme[];
   deprecated?: boolean;
 }
 
 export interface IHttpOperationRequest {
-  path: IHttpPathParam[];
-  query: IHttpQueryParam[];
-  headers: IHttpHeaderParam[];
-  cookie: IHttpCookieParam[];
+  path?: IHttpPathParam[];
+  query?: IHttpQueryParam[];
+  headers?: IHttpHeaderParam[];
+  cookie?: IHttpCookieParam[];
   body?: IHttpOperationRequestBody;
 }
 
 // https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#requestBodyObject
 export interface IHttpOperationRequestBody {
-  contents: IMediaTypeContent[];
+  contents?: IMediaTypeContent[];
   required?: boolean;
   description?: string;
 }
@@ -59,8 +59,8 @@ export interface IHttpOperationResponse {
   // Examples: 200, 2XX, 4XX, XXX ("default" in OAS)
   // When mocking, should select most specific defined code
   code: string;
-  contents: IMediaTypeContent[];
-  headers: IHttpHeaderParam[];
+  contents?: IMediaTypeContent[];
+  headers?: IHttpHeaderParam[];
   description?: string;
 }
 
@@ -69,13 +69,13 @@ export interface IHttpOperationResponse {
  */
 
 // Inspired by: https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#parameterObject
-export interface IHttpParam {
+export interface IHttpParam extends IHttpContent {
   name: string;
   style: HttpParamStyles;
   content?: IHttpContent;
   description?: string;
-  required?: boolean;
   explode?: boolean;
+  required?: boolean;
   deprecated?: boolean;
 }
 
@@ -121,9 +121,9 @@ export interface IHttpCookieParam extends IHttpParam {
  */
 
 export interface IHttpContent {
-  schema?: ISchema;
-  examples: Array<INodeExample | INodeExternalExample>;
-  encodings: IHttpEncoding[];
+  schema?: JSONSchema4 | JSONSchema6 | JSONSchema7;
+  examples?: Array<INodeExample | INodeExternalExample>;
+  encodings?: IHttpEncoding[];
 }
 
 export interface IMediaTypeContent extends IHttpContent {
@@ -132,16 +132,16 @@ export interface IMediaTypeContent extends IHttpContent {
 
 export interface IHttpEncoding {
   property: string;
-  headers: IHttpHeaderParam[];
-  mediaType?: string;
 
-  // deafults to form
+  // defaults to form
   style:
     | HttpParamStyles.Form
     | HttpParamStyles.SpaceDelimited
     | HttpParamStyles.PipeDelimited
     | HttpParamStyles.DeepObject;
 
+  headers?: IHttpHeaderParam[];
+  mediaType?: string;
   explode?: boolean;
   allowReserved?: boolean;
 }
