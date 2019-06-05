@@ -72,7 +72,6 @@ export interface IHttpOperationResponse {
 export interface IHttpParam extends IHttpContent {
   name: string;
   style: HttpParamStyles;
-  content?: IHttpContent;
   description?: string;
   explode?: boolean;
   required?: boolean;
