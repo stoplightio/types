@@ -8,7 +8,8 @@ export type DocumentUri = string;
 export type Segment = string | number;
 export type JsonPath = Segment[];
 
-export interface IParserResult<T = any, A extends object = object, L = unknown> extends IParserASTResult<T, A, L> {
+export interface IParserResult<T = any, A extends object = object, L = unknown, M = unknown>
+  extends IParserASTResult<T, A, L, M> {
   diagnostics: IDiagnostic[];
 }
 
