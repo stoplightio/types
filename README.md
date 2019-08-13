@@ -5,6 +5,14 @@ Common typings for the Stoplight ecosystem.
 - Explore the interfaces: [TSDoc](https://stoplightio.github.io/types/)
 - View the changelog: [Releases](https://github.com/stoplightio/types/releases)
 
+### Dependent repositories (not an exhaustive list):
+
+- https://github.com/stoplightio/json-ref-resolver
+- https://github.com/stoplightio/http-spec
+- https://github.com/stoplightio/spectral
+- https://github.com/stoplightio/graphite
+- https://github.com/stoplightio/prism
+
 ### Installation
 
 Supported in modern browsers and node.
