@@ -5,6 +5,10 @@ Common typings for the Stoplight ecosystem.
 - Explore the interfaces: [TSDoc](https://stoplightio.github.io/types/)
 - View the changelog: [Releases](https://github.com/stoplightio/types/releases)
 
+### Dependent repositories:
+
+https://github.com/stoplightio/types/network/dependents
+
 ### Installation
 
 Supported in modern browsers and node.
