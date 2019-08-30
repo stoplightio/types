@@ -83,7 +83,6 @@ export enum HttpParamStyles {
   Matrix = 'matrix',
   Label = 'label',
   Form = 'form',
-  CommaDelimited = 'commaDelimited',
   SpaceDelimited = 'spaceDelimited',
   PipeDelimited = 'pipeDelimited',
   DeepObject = 'deepObject',
@@ -97,10 +96,10 @@ export interface IHttpPathParam extends IHttpParam {
 export interface IHttpQueryParam extends IHttpParam {
   // should default to form
   style:
-  | HttpParamStyles.Form
-  | HttpParamStyles.SpaceDelimited
-  | HttpParamStyles.PipeDelimited
-  | HttpParamStyles.DeepObject;
+    | HttpParamStyles.Form
+    | HttpParamStyles.SpaceDelimited
+    | HttpParamStyles.PipeDelimited
+    | HttpParamStyles.DeepObject;
 
   allowEmptyValue?: boolean;
   allowReserved?: boolean;
@@ -135,11 +134,10 @@ export interface IHttpEncoding {
 
   // defaults to form
   style:
-  | HttpParamStyles.Form
-  | HttpParamStyles.CommaDelimited
-  | HttpParamStyles.SpaceDelimited
-  | HttpParamStyles.PipeDelimited
-  | HttpParamStyles.DeepObject;
+    | HttpParamStyles.Form
+    | HttpParamStyles.SpaceDelimited
+    | HttpParamStyles.PipeDelimited
+    | HttpParamStyles.DeepObject;
 
   headers?: IHttpHeaderParam[];
   mediaType?: string;
