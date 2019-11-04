@@ -35,9 +35,14 @@ export interface IHttpOperation extends INode {
   request?: IHttpOperationRequest;
   responses: IHttpOperationResponse[] & { 0: IHttpOperationResponse };
   servers?: IServer[];
+  callbacks?: IHttpCallbackOperation[];
   security?: HttpSecurityScheme[][];
   deprecated?: boolean;
 }
+
+export type IHttpCallbackOperation = Omit<IHttpOperation, 'servers' | 'security' | 'callbacks'> & {
+  callbackName: string;
+};
 
 export interface IHttpOperationRequest {
   path?: IHttpPathParam[];

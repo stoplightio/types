@@ -1,8 +1,8 @@
 import { Dictionary } from './basic';
 import { IHttpOperation } from './http-spec';
 
-export type HttpMethod = 'get' | 'post' | 'put' | 'patch' | 'delete' | 'head' | 'options';
-export type ExtendedHttpMethod = HttpMethod | 'trace' | 'copy' | 'link' | 'unlink' | 'purge' | 'lock' | 'unlock';
+export type HttpMethod = 'get' | 'post' | 'put' | 'patch' | 'delete' | 'head' | 'options' | 'trace';
+export type ExtendedHttpMethod = HttpMethod | 'copy' | 'link' | 'unlink' | 'purge' | 'lock' | 'unlock';
 
 export interface IHttpLog<T = any> {
   request: IHttpRequest<T>;
