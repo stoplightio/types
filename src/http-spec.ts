@@ -40,9 +40,9 @@ export interface IHttpOperation extends INode {
   deprecated?: boolean;
 }
 
-export interface IHttpCallbackOperation extends IHttpOperation {
+export type IHttpCallbackOperation = Omit<IHttpOperation, 'servers' | 'security' | 'callbacks'> & {
   callbackName: string;
-}
+};
 
 export interface IHttpOperationRequest {
   path?: IHttpPathParam[];
