@@ -7,5 +7,7 @@ export enum NodeType {
   HttpServer = 'http_server',
   HttpOperation = 'http_operation',
   Model = 'model',
+  Oas2Model = 'oas2_model',
+  Oas3Model = 'oas3_model',
   Unknown = 'unknown',
 }
