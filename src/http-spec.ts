@@ -181,7 +181,7 @@ export interface IBearerSecurityScheme extends ISecurityScheme {
 
 export interface IBasicSecurityScheme extends ISecurityScheme {
   type: 'http';
-  scheme: 'basic';
+  scheme: 'basic' | 'digest';
 }
 
 export interface IOpenIdConnectSecurityScheme extends ISecurityScheme {
