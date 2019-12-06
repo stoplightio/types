@@ -4,7 +4,7 @@
 export type Primitive = string | number | bigint | boolean | undefined | null | symbol;
 
 /** Dictionaries related */
-export type Dictionary<T, K extends string | number = string> = { [key in K]: T };
+export type Dictionary<T, K extends PropertyKey = string> = { [key in K]: T };
 export type DictionaryValues<T> = T extends Dictionary<infer U> ? U : never;
 
 /** Like Partial but recursive */
