@@ -164,6 +164,7 @@ export type HttpSecurityScheme =
   | IOpenIdConnectSecurityScheme;
 
 interface ISecurityScheme {
+  key: string;
   description?: string;
 }
 
