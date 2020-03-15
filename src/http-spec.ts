@@ -33,7 +33,7 @@ export interface IHttpOperation extends INode {
   method: string;
   path: string;
   request?: IHttpOperationRequest;
-  responses: IHttpOperationResponse[] & { 0: IHttpOperationResponse };
+  responses: IHttpOperationResponse[];
   servers?: IServer[];
   callbacks?: IHttpCallbackOperation[];
   security?: HttpSecurityScheme[][];
