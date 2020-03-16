@@ -31,7 +31,8 @@
     "test.watch": "yarn test --watch"
   },
   "dependencies": {
-    "@types/json-schema": "^7.0.4"
+    "@types/json-schema": "^7.0.4",
+    "utility-types": "^3.10.0"
   },
   "devDependencies": {
     "@types/jest": "^25.1.4",
