@@ -9,3 +9,12 @@ export enum NodeType {
   Model = 'model',
   Unknown = 'unknown',
 }
+
+/**
+ * Node data formats
+ */
+export enum NodeFormat {
+  Json = 'json',
+  Markdown = 'markdown',
+  Yaml = 'yaml',
+}
