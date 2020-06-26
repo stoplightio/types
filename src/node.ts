@@ -9,6 +9,7 @@ export enum NodeType {
   Model = 'model',
   Generic = 'generic',
   Unknown = 'unknown',
+  TableOfContents = 'table_of_contents',
 }
 
 /**
