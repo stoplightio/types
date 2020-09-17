@@ -3,6 +3,8 @@ import { Dictionary } from './basic';
 import { INode, INodeExample, INodeExternalExample } from './graph';
 import { IServer } from './servers';
 
+type Arrayish<T> = ArrayLike<T> & Iterable<T>;
+
 /**
  * HTTP Service
  */
@@ -10,9 +12,9 @@ import { IServer } from './servers';
 export interface IHttpService extends INode {
   name: string;
   version: string;
-  servers?: IServer[];
-  security?: HttpSecurityScheme[];
-  securitySchemes?: HttpSecurityScheme[];
+  servers?: Arrayish<IServer>;
+  security?: Arrayish<HttpSecurityScheme>;
+  securitySchemes?: Arrayish<HttpSecurityScheme>;
   termsOfService?: string;
   contact?: {
     name?: string;
@@ -33,10 +35,10 @@ export interface IHttpOperation extends INode {
   method: string;
   path: string;
   request?: IHttpOperationRequest;
-  responses: IHttpOperationResponse[];
-  servers?: IServer[];
-  callbacks?: IHttpCallbackOperation[];
-  security?: HttpSecurityScheme[][];
+  responses: Arrayish<IHttpOperationResponse>;
+  servers?: Arrayish<IServer>;
+  callbacks?: Arrayish<IHttpCallbackOperation>;
+  security?: Arrayish<HttpSecurityScheme[]>;
   deprecated?: boolean;
 }
 
@@ -45,16 +47,16 @@ export type IHttpCallbackOperation = Omit<IHttpOperation, 'servers' | 'security'
 };
 
 export interface IHttpOperationRequest {
-  path?: IHttpPathParam[];
-  query?: IHttpQueryParam[];
-  headers?: IHttpHeaderParam[];
-  cookie?: IHttpCookieParam[];
+  path?: Arrayish<IHttpPathParam>;
+  query?: Arrayish<IHttpQueryParam>;
+  headers?: Arrayish<IHttpHeaderParam>;
+  cookie?: Arrayish<IHttpCookieParam>;
   body?: IHttpOperationRequestBody;
 }
 
 // https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#requestBodyObject
 export interface IHttpOperationRequestBody {
-  contents?: IMediaTypeContent[];
+  contents?: Arrayish<IMediaTypeContent>;
   required?: boolean;
   description?: string;
 }
@@ -64,8 +66,8 @@ export interface IHttpOperationResponse {
   // Examples: 200, 2XX, 4XX, XXX ("default" in OAS)
   // When mocking, should select most specific defined code
   code: string;
-  contents?: IMediaTypeContent[];
-  headers?: IHttpHeaderParam[];
+  contents?: Arrayish<IMediaTypeContent>;
+  headers?: Arrayish<IHttpHeaderParam>;
   description?: string;
 }
 
@@ -128,7 +130,7 @@ export interface IHttpCookieParam extends IHttpParam {
 export interface IHttpContent {
   schema?: JSONSchema4 | JSONSchema6 | JSONSchema7;
   examples?: Array<INodeExample | INodeExternalExample>;
-  encodings?: IHttpEncoding[];
+  encodings?: Arrayish<IHttpEncoding>;
 }
 
 export interface IMediaTypeContent extends IHttpContent {
@@ -146,7 +148,7 @@ export interface IHttpEncoding {
   | HttpParamStyles.PipeDelimited
   | HttpParamStyles.DeepObject;
 
-  headers?: IHttpHeaderParam[];
+  headers?: Arrayish<IHttpHeaderParam>;
   mediaType?: string;
   explode?: boolean;
   allowReserved?: boolean;
