@@ -22,6 +22,7 @@ export interface IHttpService extends INode {
   license?: {
     name: string;
     url?: string;
+    identifier?: string;
   };
 }
 
@@ -102,10 +103,10 @@ export interface IHttpPathParam extends IHttpParam {
 export interface IHttpQueryParam extends IHttpParam {
   // should default to form
   style:
-  | HttpParamStyles.Form
-  | HttpParamStyles.SpaceDelimited
-  | HttpParamStyles.PipeDelimited
-  | HttpParamStyles.DeepObject;
+    | HttpParamStyles.Form
+    | HttpParamStyles.SpaceDelimited
+    | HttpParamStyles.PipeDelimited
+    | HttpParamStyles.DeepObject;
 
   allowEmptyValue?: boolean;
   allowReserved?: boolean;
@@ -127,7 +128,7 @@ export interface IHttpCookieParam extends IHttpParam {
 
 export interface IHttpContent {
   schema?: JSONSchema4 | JSONSchema6 | JSONSchema7;
-  examples?: Array<INodeExample | INodeExternalExample>;
+  examples?: (INodeExample | INodeExternalExample)[];
   encodings?: IHttpEncoding[];
 }
 
@@ -140,11 +141,11 @@ export interface IHttpEncoding {
 
   // defaults to form
   style:
-  | HttpParamStyles.Form
-  | HttpParamStyles.CommaDelimited
-  | HttpParamStyles.SpaceDelimited
-  | HttpParamStyles.PipeDelimited
-  | HttpParamStyles.DeepObject;
+    | HttpParamStyles.Form
+    | HttpParamStyles.CommaDelimited
+    | HttpParamStyles.SpaceDelimited
+    | HttpParamStyles.PipeDelimited
+    | HttpParamStyles.DeepObject;
 
   headers?: IHttpHeaderParam[];
   mediaType?: string;
@@ -161,7 +162,8 @@ export type HttpSecurityScheme =
   | IBearerSecurityScheme
   | IBasicSecurityScheme
   | IOauth2SecurityScheme
-  | IOpenIdConnectSecurityScheme;
+  | IOpenIdConnectSecurityScheme
+  | IMutualTLSSecurityScheme;
 
 interface ISecurityScheme {
   key: string;
@@ -193,6 +195,10 @@ export interface IOpenIdConnectSecurityScheme extends ISecurityScheme {
 export interface IOauth2SecurityScheme extends ISecurityScheme {
   type: 'oauth2';
   flows: IOauthFlowObjects;
+}
+
+export interface IMutualTLSSecurityScheme extends ISecurityScheme {
+  type: 'mutualTLS';
 }
 
 export interface IOauthFlowObjects {
