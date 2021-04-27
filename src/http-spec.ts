@@ -39,6 +39,7 @@ export interface IHttpOperation extends INode {
   callbacks?: IHttpCallbackOperation[];
   security?: HttpSecurityScheme[][];
   deprecated?: boolean;
+  internal?: boolean;
 }
 
 export type IHttpCallbackOperation = Omit<IHttpOperation, 'servers' | 'security' | 'callbacks'> & {
