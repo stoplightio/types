@@ -10,6 +10,7 @@ export enum NodeType {
   Generic = 'generic',
   Unknown = 'unknown',
   TableOfContents = 'table_of_contents',
+  SpectralRuleset = 'spectral_ruleset',
 }
 
 /**
