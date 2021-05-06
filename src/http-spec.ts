@@ -24,6 +24,12 @@ export interface IHttpService extends INode {
     url?: string;
     identifier?: string;
   };
+  logo?: {
+    altText: string;
+    href?: string;
+    url?: string;
+    backgroundColor?: string;
+  }
 }
 
 /**
