@@ -26,6 +26,8 @@ workflows:
       - release:
           filters:
             branches:
-              only: master
+              only:
+                - master
+                - beta
           requires:
             - test_node_lts
