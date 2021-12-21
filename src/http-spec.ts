@@ -46,6 +46,7 @@ export interface IHttpOperation extends INode {
   security?: HttpSecurityScheme[][];
   deprecated?: boolean;
   internal?: boolean;
+  extensions?: Extensions;
 }
 
 export type IHttpCallbackOperation = Omit<IHttpOperation, 'servers' | 'security' | 'callbacks'> & {
@@ -235,4 +236,8 @@ export interface IOauth2PasswordFlow extends IOauth2Flow {
 
 export interface IOauth2ClientCredentialsFlow extends IOauth2Flow {
   tokenUrl: string;
+}
+
+export interface Extensions {
+  [key: string]: any;
 }
