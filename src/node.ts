@@ -11,6 +11,7 @@ export enum NodeType {
   Unknown = 'unknown',
   TableOfContents = 'table_of_contents',
   SpectralRuleset = 'spectral_ruleset',
+  Styleguide = 'styleguide',
 }
 
 /**
