@@ -1,7 +1,7 @@
 import { Dictionary } from './basic';
-import { INodeVariable } from './graph';
+import { INodeVariable, IShareableNode } from './graph';
 
-export interface IServer {
+export interface IServer extends IShareableNode {
   url: string;
   name?: string;
   description?: string;

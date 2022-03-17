@@ -1,13 +1,13 @@
 import { JSONSchema7 } from 'json-schema';
 import { Dictionary } from './basic';
-import { INode, INodeExample, INodeExternalExample } from './graph';
+import { IShareableNode, INode, INodeExample, INodeExternalExample } from './graph';
 import { IServer } from './servers';
 
 /**
  * HTTP Service
  */
 
-export interface IHttpService extends INode {
+export interface IHttpService extends INode, IShareableNode {
   name: string;
   version: string;
   servers?: IServer[];
@@ -29,14 +29,14 @@ export interface IHttpService extends INode {
     href?: string;
     url?: string;
     backgroundColor?: string;
-  }
+  };
 }
 
 /**
  * HTTP Operation
  */
 
-export interface IHttpOperation extends INode {
+export interface IHttpOperation extends INode, IShareableNode {
   method: string;
   path: string;
   request?: IHttpOperationRequest;
@@ -62,13 +62,13 @@ export interface IHttpOperationRequest {
 }
 
 // https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#requestBodyObject
-export interface IHttpOperationRequestBody {
+export interface IHttpOperationRequestBody extends IShareableNode  {
   contents?: IMediaTypeContent[];
   required?: boolean;
   description?: string;
 }
 
-export interface IHttpOperationResponse {
+export interface IHttpOperationResponse extends IShareableNode {
   // Note: code MAY contain uppercase "X" to indicate wildcard
   // Examples: 200, 2XX, 4XX, XXX ("default" in OAS)
   // When mocking, should select most specific defined code
@@ -83,7 +83,7 @@ export interface IHttpOperationResponse {
  */
 
 // Inspired by: https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#parameterObject
-export interface IHttpParam extends IHttpContent {
+export interface IHttpParam extends IHttpContent, IShareableNode {
   name: string;
   style: HttpParamStyles;
   description?: string;
@@ -134,7 +134,7 @@ export interface IHttpCookieParam extends IHttpParam {
  * HTTP Content
  */
 
-export interface IHttpContent {
+export interface IHttpContent extends IShareableNode {
   schema?: JSONSchema7;
   examples?: (INodeExample | INodeExternalExample)[];
   encodings?: IHttpEncoding[];
@@ -173,7 +173,7 @@ export type HttpSecurityScheme =
   | IOpenIdConnectSecurityScheme
   | IMutualTLSSecurityScheme;
 
-interface ISecurityScheme {
+interface ISecurityScheme extends IShareableNode {
   key: string;
   description?: string;
 }
@@ -239,5 +239,5 @@ export interface IOauth2ClientCredentialsFlow extends IOauth2Flow {
 }
 
 export interface Extensions {
-  [key: string]: any;
+  [key: string]: unknown;
 }
