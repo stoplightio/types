@@ -28,7 +28,7 @@ interface INodeExampleBase {
 }
 
 export interface INodeExample extends INodeExampleBase, IShareableNode {
-  value: any;
+  value: unknown;
 }
 
 export interface INodeExternalExample extends INodeExampleBase {
