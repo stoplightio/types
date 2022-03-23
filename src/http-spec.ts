@@ -239,5 +239,5 @@ export interface IOauth2ClientCredentialsFlow extends IOauth2Flow {
 }
 
 export interface Extensions {
-  [key: string]: any;
+  [key: string]: unknown;
 }

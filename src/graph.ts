@@ -25,7 +25,7 @@ interface INodeExampleBase {
 }
 
 export interface INodeExample extends INodeExampleBase {
-  value: any;
+  value: unknown;
 }
 
 export interface INodeExternalExample extends INodeExampleBase {
