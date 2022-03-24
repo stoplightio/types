@@ -112,6 +112,7 @@ export interface IHttpQueryParam extends IHttpParam {
   // should default to form
   style:
     | HttpParamStyles.Form
+    | HttpParamStyles.CommaDelimited
     | HttpParamStyles.SpaceDelimited
     | HttpParamStyles.PipeDelimited
     | HttpParamStyles.DeepObject;
