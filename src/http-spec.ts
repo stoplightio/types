@@ -112,6 +112,7 @@ export interface IHttpQueryParam extends IHttpParam {
   // should default to form
   style:
     | HttpParamStyles.Form
+    | HttpParamStyles.CommaDelimited
     | HttpParamStyles.SpaceDelimited
     | HttpParamStyles.PipeDelimited
     | HttpParamStyles.DeepObject;
@@ -239,5 +240,5 @@ export interface IOauth2ClientCredentialsFlow extends IOauth2Flow {
 }
 
 export interface Extensions {
-  [key: string]: any;
+  [key: string]: unknown;
 }
