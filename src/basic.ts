@@ -11,5 +11,3 @@ export type DictionaryValues<T> = T extends Dictionary<infer U> ? U : never;
 export type Opaque<K, T> = T & { __TYPE__: K };
 
 export type Optional<T> = T | undefined;
-
-export type ArrayCallbackParameters<T> = [T, number, T[]];
