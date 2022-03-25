@@ -1,5 +1,8 @@
-export interface INode {
+export interface IShareableNode {
   id: string;
+}
+
+export interface INode extends IShareableNode {
   /** An internal identifier. For example, the operationId property in OAS. */
   iid?: string;
   tags?: INodeTag[];
@@ -24,7 +27,7 @@ interface INodeExampleBase {
   description?: string;
 }
 
-export interface INodeExample extends INodeExampleBase {
+export interface INodeExample extends INodeExampleBase, IShareableNode {
   value: unknown;
 }
 
