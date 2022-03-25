@@ -62,7 +62,7 @@ export interface IHttpOperationRequest {
 }
 
 // https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#requestBodyObject
-export interface IHttpOperationRequestBody {
+export interface IHttpOperationRequestBody extends IShareableNode  {
   contents?: IMediaTypeContent[];
   required?: boolean;
   description?: string;
@@ -135,7 +135,7 @@ export interface IHttpCookieParam extends IHttpParam {
  * HTTP Content
  */
 
-export interface IHttpContent {
+export interface IHttpContent extends IShareableNode {
   schema?: JSONSchema7;
   examples?: (INodeExample | INodeExternalExample)[];
   encodings?: IHttpEncoding[];
