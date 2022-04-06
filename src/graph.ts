@@ -1,3 +1,5 @@
+import { Extensions } from './http-spec';
+
 export interface IShareableNode {
   id: string;
 }
@@ -8,6 +10,7 @@ export interface INode extends IShareableNode {
   tags?: INodeTag[];
   summary?: string;
   description?: string;
+  extensions?: Extensions;
 }
 
 export interface INodeTag {

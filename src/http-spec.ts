@@ -46,7 +46,6 @@ export interface IHttpOperation extends INode, IShareableNode {
   security?: HttpSecurityScheme[][];
   deprecated?: boolean;
   internal?: boolean;
-  extensions?: Extensions;
 }
 
 export type IHttpCallbackOperation = Omit<IHttpOperation, 'servers' | 'security' | 'callbacks'> & {
