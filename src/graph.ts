@@ -34,6 +34,6 @@ export interface INodeExample extends INodeExampleBase, IShareableNode {
   value: unknown;
 }
 
-export interface INodeExternalExample extends INodeExampleBase {
+export interface INodeExternalExample extends INodeExampleBase, IShareableNode {
   externalValue: string;
 }
