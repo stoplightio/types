@@ -12,6 +12,7 @@ export enum NodeType {
   TableOfContents = 'table_of_contents',
   SpectralRuleset = 'spectral_ruleset',
   Styleguide = 'styleguide',
+  Image = 'image',
 }
 
 /**
@@ -21,4 +22,9 @@ export enum NodeFormat {
   Json = 'json',
   Markdown = 'markdown',
   Yaml = 'yaml',
+  Jpeg = 'jpeg',
+  Png = 'png',
+  Gif = 'gif',
+  Bmp = 'bmp',
+  Webp = 'webp',
 }
