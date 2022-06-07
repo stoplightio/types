@@ -1,6 +1,6 @@
 import { JSONSchema7 } from 'json-schema';
 import { Dictionary } from './basic';
-import { IShareableNode, INode, INodeExample, INodeExternalExample } from './graph';
+import { IShareableNode, INode, INodeExample, INodeExternalExample, IComponentNode } from './graph';
 import { IServer } from './servers';
 
 /**
@@ -32,15 +32,31 @@ export interface IHttpService extends INode, IShareableNode {
   };
 }
 
+export interface IBundledHttpService extends Omit<IHttpService, 'securitySchemes'> {
+  operations: IHttpOperation<true>[];
+
+  components: {
+    schemas: (IComponentNode & JSONSchema7)[];
+    responses: (IComponentNode & (IHttpOperationResponse<true> | Reference))[];
+    path: (IComponentNode & (IHttpHeaderParam<true> | Reference))[];
+    query: (IComponentNode & (IHttpQueryParam<true> | Reference))[];
+    header: (IComponentNode & (IHttpHeaderParam<true> | Reference))[];
+    cookie: (IComponentNode & (IHttpCookieParam<true> | Reference))[];
+    examples: (IComponentNode & (INodeExample | INodeExternalExample | Reference))[];
+    requestBodies: (IComponentNode & (IHttpOperationRequestBody<true> | Reference))[];
+    securitySchemes: (IComponentNode & (HttpSecurityScheme | Reference))[];
+  };
+}
+
 /**
  * HTTP Operation
  */
 
-export interface IHttpOperation extends INode, IShareableNode {
+export interface IHttpOperation<Bundle extends boolean = false> extends INode, IShareableNode {
   method: string;
   path: string;
-  request?: IHttpOperationRequest;
-  responses: IHttpOperationResponse[];
+  request?: Bundle extends true ? IHttpOperationRequest<true> | Reference : IHttpOperationRequest<false>;
+  responses: (Bundle extends true ? IHttpOperationResponse<true> | Reference : IHttpOperationResponse<false>)[];
   servers?: IServer[];
   callbacks?: IHttpCallbackOperation[];
   security?: HttpSecurityScheme[][];
@@ -48,32 +64,32 @@ export interface IHttpOperation extends INode, IShareableNode {
   internal?: boolean;
 }
 
-export type IHttpCallbackOperation = Omit<IHttpOperation, 'servers' | 'security' | 'callbacks'> & {
+export type IHttpCallbackOperation = Omit<IHttpOperation<false>, 'servers' | 'security' | 'callbacks'> & {
   callbackName: string;
 };
 
-export interface IHttpOperationRequest {
-  path?: IHttpPathParam[];
-  query?: IHttpQueryParam[];
-  headers?: IHttpHeaderParam[];
-  cookie?: IHttpCookieParam[];
-  body?: IHttpOperationRequestBody;
+export interface IHttpOperationRequest<Bundle extends boolean = false> {
+  path?: (Bundle extends true ? IHttpPathParam<true> | Reference : IHttpPathParam<false>)[];
+  query?: (Bundle extends true ? IHttpQueryParam<true> | Reference : IHttpQueryParam<false>)[];
+  headers?: (Bundle extends true ? IHttpHeaderParam<true> | Reference : IHttpHeaderParam<false>)[];
+  cookie?: (Bundle extends true ? IHttpCookieParam<true> | Reference : IHttpCookieParam<false>)[];
+  body?: Bundle extends true ? IHttpOperationRequestBody<true> | Reference : IHttpOperationRequestBody<false>;
 }
 
 // https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#requestBodyObject
-export interface IHttpOperationRequestBody extends IShareableNode  {
-  contents?: IMediaTypeContent[];
+export interface IHttpOperationRequestBody<Bundle extends boolean = false> extends IShareableNode {
+  contents?: IMediaTypeContent<Bundle>[];
   required?: boolean;
   description?: string;
 }
 
-export interface IHttpOperationResponse extends IShareableNode {
+export interface IHttpOperationResponse<Bundle extends boolean = false> extends IShareableNode {
   // Note: code MAY contain uppercase "X" to indicate wildcard
   // Examples: 200, 2XX, 4XX, XXX ("default" in OAS)
   // When mocking, should select most specific defined code
   code: string;
-  contents?: IMediaTypeContent[];
-  headers?: IHttpHeaderParam[];
+  contents?: IMediaTypeContent<Bundle>[];
+  headers?: (Bundle extends true ? IHttpHeaderParam<true> | Reference : IHttpHeaderParam<false>)[];
   description?: string;
 }
 
@@ -82,7 +98,7 @@ export interface IHttpOperationResponse extends IShareableNode {
  */
 
 // Inspired by: https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#parameterObject
-export interface IHttpParam extends IHttpContent, IShareableNode {
+export interface IHttpParam<Bundle extends boolean = false> extends IHttpContent<Bundle>, IShareableNode {
   name: string;
   style: HttpParamStyles;
   description?: string;
@@ -102,12 +118,12 @@ export enum HttpParamStyles {
   DeepObject = 'deepObject',
 }
 
-export interface IHttpPathParam extends IHttpParam {
+export interface IHttpPathParam<Bundle extends boolean = false> extends IHttpParam<Bundle> {
   // should default to simple
   style: HttpParamStyles.Label | HttpParamStyles.Matrix | HttpParamStyles.Simple;
 }
 
-export interface IHttpQueryParam extends IHttpParam {
+export interface IHttpQueryParam<Bundle extends boolean = false> extends IHttpParam<Bundle> {
   // should default to form
   style:
     | HttpParamStyles.Form
@@ -120,12 +136,12 @@ export interface IHttpQueryParam extends IHttpParam {
   allowReserved?: boolean;
 }
 
-export interface IHttpHeaderParam extends IHttpParam {
+export interface IHttpHeaderParam<Bundle extends boolean = false> extends IHttpParam<Bundle> {
   // should default to simple
   style: HttpParamStyles.Simple;
 }
 
-export interface IHttpCookieParam extends IHttpParam {
+export interface IHttpCookieParam<Bundle extends boolean = false> extends IHttpParam<Bundle> {
   // should default to form
   style: HttpParamStyles.Form;
 }
@@ -134,17 +150,19 @@ export interface IHttpCookieParam extends IHttpParam {
  * HTTP Content
  */
 
-export interface IHttpContent extends IShareableNode {
+export interface IHttpContent<Bundle extends boolean = false> extends IShareableNode {
   schema?: JSONSchema7;
-  examples?: (INodeExample | INodeExternalExample)[];
-  encodings?: IHttpEncoding[];
+  examples?: (Bundle extends true
+    ? INodeExample | INodeExternalExample | Reference
+    : INodeExample | INodeExternalExample)[];
+  encodings?: IHttpEncoding<Bundle>[];
 }
 
-export interface IMediaTypeContent extends IHttpContent {
+export interface IMediaTypeContent<Bundle extends boolean = false> extends IHttpContent<Bundle> {
   mediaType: string;
 }
 
-export interface IHttpEncoding {
+export interface IHttpEncoding<Bundle extends boolean = false> {
   property: string;
 
   // defaults to form
@@ -155,7 +173,7 @@ export interface IHttpEncoding {
     | HttpParamStyles.PipeDelimited
     | HttpParamStyles.DeepObject;
 
-  headers?: IHttpHeaderParam[];
+  headers?: (Bundle extends true ? IHttpHeaderParam<true> | Reference : IHttpHeaderParam<false>)[];
   mediaType?: string;
   explode?: boolean;
   allowReserved?: boolean;
@@ -237,6 +255,12 @@ export interface IOauth2PasswordFlow extends IOauth2Flow {
 export interface IOauth2ClientCredentialsFlow extends IOauth2Flow {
   tokenUrl: string;
 }
+
+export type Reference = {
+  $ref: string;
+  summary?: string;
+  description?: string;
+};
 
 export interface Extensions {
   [key: string]: unknown;
