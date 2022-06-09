@@ -56,7 +56,9 @@ export interface IHttpOperation<Bundle extends boolean = false> extends INode, I
   method: string;
   path: string;
   request?: Bundle extends true ? IHttpOperationRequest<true> | Reference : IHttpOperationRequest<false>;
-  responses: (Bundle extends true ? IHttpOperationResponse<true> | Reference : IHttpOperationResponse<false>)[];
+  responses: (Bundle extends true
+    ? IHttpOperationResponse<true> | (Pick<IHttpOperationResponse, 'code'> & Reference)
+    : IHttpOperationResponse<false>)[];
   servers?: IServer[];
   callbacks?: IHttpCallbackOperation[];
   security?: HttpSecurityScheme[][];
@@ -89,7 +91,9 @@ export interface IHttpOperationResponse<Bundle extends boolean = false> extends 
   // When mocking, should select most specific defined code
   code: string;
   contents?: IMediaTypeContent<Bundle>[];
-  headers?: (Bundle extends true ? IHttpHeaderParam<true> | Reference : IHttpHeaderParam<false>)[];
+  headers?: (Bundle extends true
+    ? IHttpHeaderParam<true> | (Pick<IHttpHeaderParam, 'name'> & Reference)
+    : IHttpHeaderParam<false>)[];
   description?: string;
 }
 
@@ -153,7 +157,7 @@ export interface IHttpCookieParam<Bundle extends boolean = false> extends IHttpP
 export interface IHttpContent<Bundle extends boolean = false> extends IShareableNode {
   schema?: JSONSchema7;
   examples?: (Bundle extends true
-    ? INodeExample | INodeExternalExample | Reference
+    ? INodeExample | INodeExternalExample | (Pick<INodeExample, 'key'> & Reference)
     : INodeExample | INodeExternalExample)[];
   encodings?: IHttpEncoding<Bundle>[];
 }
