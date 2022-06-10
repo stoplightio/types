@@ -50,7 +50,7 @@
     "@types/jest": "^25.1.4",
     "jest": "^25.1.0",
     "rollup": "^2.70.1",
-    "semantic-release": "^17.0.4",
+    "semantic-release": "^19.0.3",
     "ts-jest": "^25.2.1",
     "tslint": "^6.1.0",
     "tslint-config-stoplight": "^1.4.0",
