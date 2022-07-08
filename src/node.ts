@@ -22,9 +22,12 @@ export enum NodeFormat {
   Json = 'json',
   Markdown = 'markdown',
   Yaml = 'yaml',
+  Apng = 'apng', // https://caniuse.com/apng
+  Avif = 'avif', // https://caniuse.com/avif
+  Bmp = 'bmp', // allowed bc we historically supported it
+  Gif = 'gif',
   Jpeg = 'jpeg',
   Png = 'png',
-  Gif = 'gif',
-  Bmp = 'bmp',
-  Webp = 'webp',
+  Svg = 'svg', // https://caniuse.com/svg-img
+  Webp = 'webp', // https://caniuse.com/webp
 }
