@@ -30,6 +30,7 @@ export interface IHttpService extends INode, IShareableNode {
     url?: string;
     backgroundColor?: string;
   };
+  internal?: boolean;
 }
 
 export interface IBundledHttpService extends Omit<IHttpService, 'securitySchemes'> {
