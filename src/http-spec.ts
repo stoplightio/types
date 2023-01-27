@@ -61,15 +61,16 @@ export interface IHttpOperation<Bundle extends boolean = false> extends INode, I
     ? IHttpOperationResponse<true> | (Pick<IHttpOperationResponse, 'code'> & Reference)
     : IHttpOperationResponse<false>)[];
   servers?: IServer[];
-  callbacks?: IHttpCallbackOperation[];
+  callbacks?: (Bundle extends true ? IHttpCallbackOperation[] | Reference : IHttpCallbackOperation<false>)[];
   security?: HttpSecurityScheme[][];
   deprecated?: boolean;
   internal?: boolean;
 }
 
-export type IHttpCallbackOperation = Omit<IHttpOperation<false>, 'servers' | 'security' | 'callbacks'> & {
+export interface IHttpCallbackOperation<Bundle extends boolean = false>
+  extends Omit<IHttpOperation<Bundle>, 'callbacks'> {
   callbackName: string;
-};
+}
 
 export interface IHttpOperationRequest<Bundle extends boolean = false> {
   path?: (Bundle extends true ? IHttpPathParam<true> | Reference : IHttpPathParam<false>)[];
