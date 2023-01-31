@@ -6,6 +6,7 @@ export enum NodeType {
   HttpService = 'http_service',
   HttpServer = 'http_server',
   HttpOperation = 'http_operation',
+  HttpCallback = 'http_callback',
   Model = 'model',
   Generic = 'generic',
   Unknown = 'unknown',
@@ -14,7 +15,6 @@ export enum NodeType {
   Styleguide = 'styleguide',
   Image = 'image',
 }
-
 /**
  * Node data formats
  */
