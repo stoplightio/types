@@ -1,6 +1,6 @@
 import { JSONSchema7 } from 'json-schema';
 import { Dictionary } from './basic';
-import { IShareableNode, INode, INodeExample, INodeExternalExample, IComponentNode } from './graph';
+import { IComponentNode, INode, INodeExample, INodeExternalExample, IShareableNode } from './graph';
 import { IServer } from './servers';
 
 /**
@@ -86,6 +86,7 @@ export interface IHttpOperationRequestBody<Bundle extends boolean = false> exten
   contents?: IMediaTypeContent<Bundle>[];
   required?: boolean;
   description?: string;
+  name?: string;
 }
 
 export interface IHttpOperationResponse<Bundle extends boolean = false> extends IShareableNode {
