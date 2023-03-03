@@ -87,6 +87,7 @@ export interface IHttpOperationRequestBody<Bundle extends boolean = false> exten
   required?: boolean;
   description?: string;
   name?: string;
+  key?: string;
 }
 
 export interface IHttpOperationResponse<Bundle extends boolean = false> extends IShareableNode {
