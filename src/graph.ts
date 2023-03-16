@@ -1,4 +1,4 @@
-import { Extensions } from './http-spec';
+import { Extensions } from "./http-spec";
 
 export interface IShareableNode {
   id: string;
@@ -17,7 +17,7 @@ export interface INode extends IShareableNode {
   extensions?: Extensions;
 }
 
-export interface INodeTag {
+export interface INodeTag extends IShareableNode {
   name: string;
   description?: string;
 }
