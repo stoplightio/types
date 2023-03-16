@@ -202,6 +202,7 @@ export type HttpSecurityScheme =
 interface ISecurityScheme extends IShareableNode {
   key: string;
   description?: string;
+  extensions: Extensions;
 }
 
 export interface IApiKeySecurityScheme extends ISecurityScheme {
