@@ -274,3 +274,7 @@ export type Reference = {
 export interface Extensions {
   [key: string]: unknown;
 }
+
+export interface UnknownProperties {
+  [key: string]: unknown;
+}

@@ -1,7 +1,8 @@
-import { Extensions } from "./http-spec";
+import { Extensions, UnknownProperties } from "./http-spec";
 
 export interface IShareableNode {
   id: string;
+  unknownProperties?: UnknownProperties;
 }
 
 export interface IComponentNode {
