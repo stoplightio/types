@@ -14,8 +14,8 @@ export enum NodeType {
   SpectralRuleset = 'spectral_ruleset',
   Styleguide = 'styleguide',
   Image = 'image',
-  Resolutions = 'resolutions',
-  Override = 'override',
+  StoplightResolutions = 'stoplight_resolutions',
+  StoplightOverride = 'stoplight_override',
 }
 /**
  * Node data formats
