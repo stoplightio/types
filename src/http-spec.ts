@@ -63,8 +63,15 @@ export interface IHttpOperation<Bundle extends boolean = false> extends INode, I
   servers?: IServer[];
   callbacks?: (Bundle extends true ? IHttpCallbackOperation[] | Reference : IHttpCallbackOperation<false>)[];
   security?: HttpSecurityScheme[][];
+  securityDeclarationType?: HttpOperationSecurityDeclarationTypes;
   deprecated?: boolean;
   internal?: boolean;
+}
+
+export enum HttpOperationSecurityDeclarationTypes {
+  None = 'none', // For empty `security` array on operation object
+  Declared = 'declared', // For non-empty `security` array on operation object
+  InheritedFromService = 'inheritedFromService', // Undefined `security` property on operation object
 }
 
 export interface IHttpCallbackOperation<Bundle extends boolean = false>
