@@ -126,14 +126,54 @@ export interface IHttpParam<Bundle extends boolean = false> extends IHttpContent
 }
 
 export enum HttpParamStyles {
+  /**
+   * OAS 3.x style simple
+   * OAS 2 collectionFormat csv
+   */
   Simple = 'simple',
+  /**
+   * OAS 3.x style matrix
+   * OAS 2 collectionFormat no support
+   */
   Matrix = 'matrix',
+  /**
+   * OAS 3.x style label
+   * OAS 2 collectionFormat no support
+   */
   Label = 'label',
+  /**
+   * OAS 3.x style form 
+   * OAS 2 collectionFormat
+   *   * csv, when explode === false
+   *   * multi, when explode === true
+   */
   Form = 'form',
+  /**
+   * OAS 3.x no support
+   * OAS 2 collectionFormat csv when explode === undefined
+   */
   CommaDelimited = 'commaDelimited',
+  /**
+   * OAS 3.x style spaceDelimited
+   * OAS 2 collectionFormat ssv
+   */
   SpaceDelimited = 'spaceDelimited',
+  /**
+   * OAS 3.x style spaceDelimited
+   * OAS 2 collectionFormat pipes
+   */
   PipeDelimited = 'pipeDelimited',
+  /**
+   * OAS 3.x style deepObject
+   * OAS 2 collectionFormat no support
+   */
   DeepObject = 'deepObject',
+
+  /**
+   * OAS 3.x style no support
+   * OAS 2 collectionFormat tsv
+   */
+  TabDelimited = 'tabDelimited',
 }
 
 export interface IHttpPathParam<Bundle extends boolean = false> extends IHttpParam<Bundle> {
@@ -148,7 +188,8 @@ export interface IHttpQueryParam<Bundle extends boolean = false> extends IHttpPa
     | HttpParamStyles.CommaDelimited
     | HttpParamStyles.SpaceDelimited
     | HttpParamStyles.PipeDelimited
-    | HttpParamStyles.DeepObject;
+    | HttpParamStyles.DeepObject
+    | HttpParamStyles.TabDelimited;
 
   allowEmptyValue?: boolean;
   allowReserved?: boolean;
