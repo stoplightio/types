@@ -123,6 +123,8 @@ export interface IHttpParam<Bundle extends boolean = false> extends IHttpContent
   explode?: boolean;
   required?: boolean;
   deprecated?: boolean;
+  /** Captures any properties that were explicitly defined.  */
+  explicitProperties?: string[]
 }
 
 export enum HttpParamStyles {
@@ -323,9 +325,5 @@ export type Reference = {
 };
 
 export interface Extensions {
-  [key: string]: unknown;
-}
-
-export interface UnknownProperties {
   [key: string]: unknown;
 }
