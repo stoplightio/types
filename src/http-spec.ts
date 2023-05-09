@@ -128,6 +128,8 @@ export interface IHttpParam<Bundle extends boolean = false> extends IHttpContent
 }
 
 export enum HttpParamStyles {
+  /** Used when OAS2 type !== array */
+  Unspecified = "unspecified",
   /**
    * OAS 3.x style simple
    * OAS 2 collectionFormat csv
@@ -180,12 +182,17 @@ export enum HttpParamStyles {
 
 export interface IHttpPathParam<Bundle extends boolean = false> extends IHttpParam<Bundle> {
   // should default to simple
-  style: HttpParamStyles.Label | HttpParamStyles.Matrix | HttpParamStyles.Simple;
+  style:
+    | HttpParamStyles.Unspecified
+    | HttpParamStyles.Label
+    | HttpParamStyles.Matrix
+    | HttpParamStyles.Simple;
 }
 
 export interface IHttpQueryParam<Bundle extends boolean = false> extends IHttpParam<Bundle> {
   // should default to form
   style:
+    | HttpParamStyles.Unspecified
     | HttpParamStyles.Form
     | HttpParamStyles.CommaDelimited
     | HttpParamStyles.SpaceDelimited
@@ -199,12 +206,12 @@ export interface IHttpQueryParam<Bundle extends boolean = false> extends IHttpPa
 
 export interface IHttpHeaderParam<Bundle extends boolean = false> extends IHttpParam<Bundle> {
   // should default to simple
-  style: HttpParamStyles.Simple;
+  style: HttpParamStyles.Unspecified | HttpParamStyles.Simple;
 }
 
 export interface IHttpCookieParam<Bundle extends boolean = false> extends IHttpParam<Bundle> {
   // should default to form
-  style: HttpParamStyles.Form;
+  style: HttpParamStyles.Unspecified | HttpParamStyles.Form;
 }
 
 /**
