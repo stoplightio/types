@@ -31,6 +31,7 @@ export interface IHttpService extends INode, IShareableNode {
     backgroundColor?: string;
   };
   internal?: boolean;
+  externalDocs?: IExternalDocs;
 }
 
 export interface IBundledHttpService extends Omit<IHttpService, 'securitySchemes'> {
@@ -66,6 +67,7 @@ export interface IHttpOperation<Bundle extends boolean = false> extends INode, I
   securityDeclarationType?: HttpOperationSecurityDeclarationTypes;
   deprecated?: boolean;
   internal?: boolean;
+  externalDocs?: IExternalDocs;
 }
 
 export enum HttpOperationSecurityDeclarationTypes {
@@ -333,4 +335,9 @@ export type Reference = {
 
 export interface Extensions {
   [key: string]: unknown;
+}
+
+export interface IExternalDocs { 
+  description?: string;
+  url: string;
 }
