@@ -47,6 +47,7 @@ export interface IBundledHttpService extends Omit<IHttpService, 'securitySchemes
     examples: (IComponentNode & (INodeExample | INodeExternalExample | Reference))[];
     requestBodies: (IComponentNode & (IHttpOperationRequestBody<true> | Reference))[];
     securitySchemes: (IComponentNode & (HttpSecurityScheme | Reference))[];
+    callbacks: (IComponentNode & (IHttpCallbackOperation | IHttpKeyedReference))[];
   };
 }
 
@@ -62,7 +63,7 @@ export interface IHttpOperation<Bundle extends boolean = false> extends INode, I
     ? IHttpOperationResponse<true> | (Pick<IHttpOperationResponse, 'code'> & Reference)
     : IHttpOperationResponse<false>)[];
   servers?: IServer[];
-  callbacks?: (Bundle extends true ? IHttpCallbackOperation[] | Reference : IHttpCallbackOperation<false>)[];
+  callbacks?: (Bundle extends true ? (IHttpCallbackOperation | IHttpKeyedReference)[] : IHttpCallbackOperation<false>)[];
   security?: HttpSecurityScheme[][];
   securityDeclarationType?: HttpOperationSecurityDeclarationTypes;
   deprecated?: boolean;
@@ -81,7 +82,11 @@ export enum HttpOperationSecurityDeclarationTypes {
 
 export interface IHttpCallbackOperation<Bundle extends boolean = false>
   extends Omit<IHttpOperation<Bundle>, 'callbacks'> {
-  callbackName: string;
+  key: string;
+}
+
+export interface IHttpKeyedReference extends Reference {
+  key: string;
 }
 
 export interface IHttpOperationRequest<Bundle extends boolean = false> {
@@ -223,7 +228,7 @@ export interface IHttpCookieParam<Bundle extends boolean = false> extends IHttpP
 export interface IHttpContent<Bundle extends boolean = false> extends IShareableNode {
   schema?: JSONSchema7;
   examples?: (Bundle extends true
-    ? INodeExample | INodeExternalExample | (Pick<INodeExample, 'key'> & Reference)
+    ? INodeExample | INodeExternalExample | (IHttpKeyedReference)
     : INodeExample | INodeExternalExample)[];
   encodings?: IHttpEncoding<Bundle>[];
 }
