@@ -1,13 +1,13 @@
 import { JSONSchema7 } from 'json-schema';
 import { Dictionary } from './basic';
-import { IComponentNode, INode, INodeExample, INodeExternalExample, IShareableNode } from './graph';
+import { IComponentNode, INode, INodeExample, INodeExternalExample, IShareableNode, ISpecExtensions } from './graph';
 import { IServer } from './servers';
 
 /**
  * HTTP Service
  */
 
-export interface IHttpService extends INode, IShareableNode {
+export interface IHttpService extends INode, IShareableNode, ISpecExtensions {
   name: string;
   version: string;
   servers?: IServer[];
@@ -55,7 +55,7 @@ export interface IBundledHttpService extends Omit<IHttpService, 'securitySchemes
  * HTTP Operation
  */
 
-export interface IHttpOperation<Bundle extends boolean = false> extends INode, IShareableNode {
+export interface IHttpOperation<Bundle extends boolean = false> extends INode, IShareableNode, ISpecExtensions {
   method: string;
   path: string;
   request?: Bundle extends true ? IHttpOperationRequest<true> | Reference : IHttpOperationRequest<false>;
@@ -99,14 +99,14 @@ export interface IHttpOperationRequest<Bundle extends boolean = false> {
 }
 
 // https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#requestBodyObject
-export interface IHttpOperationRequestBody<Bundle extends boolean = false> extends IShareableNode {
+export interface IHttpOperationRequestBody<Bundle extends boolean = false> extends IShareableNode, ISpecExtensions {
   contents?: IMediaTypeContent<Bundle>[];
   required?: boolean;
   description?: string;
   name?: string;
 }
 
-export interface IHttpOperationResponse<Bundle extends boolean = false> extends IShareableNode {
+export interface IHttpOperationResponse<Bundle extends boolean = false> extends IShareableNode, ISpecExtensions {
   // Note: code MAY contain uppercase "X" to indicate wildcard
   // Examples: 200, 2XX, 4XX, XXX ("default" in OAS)
   // When mocking, should select most specific defined code
@@ -123,7 +123,7 @@ export interface IHttpOperationResponse<Bundle extends boolean = false> extends 
  */
 
 // Inspired by: https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#parameterObject
-export interface IHttpParam<Bundle extends boolean = false> extends IHttpContent<Bundle>, IShareableNode {
+export interface IHttpParam<Bundle extends boolean = false> extends IHttpContent<Bundle>, IShareableNode, ISpecExtensions {
   name: string;
   style: HttpParamStyles;
   description?: string;
@@ -225,7 +225,7 @@ export interface IHttpCookieParam<Bundle extends boolean = false> extends IHttpP
  * HTTP Content
  */
 
-export interface IHttpContent<Bundle extends boolean = false> extends IShareableNode {
+export interface IHttpContent<Bundle extends boolean = false> extends IShareableNode, ISpecExtensions {
   schema?: JSONSchema7;
   examples?: (Bundle extends true
     ? INodeExample | INodeExternalExample | (IHttpKeyedReference)
@@ -237,7 +237,7 @@ export interface IMediaTypeContent<Bundle extends boolean = false> extends IHttp
   mediaType: string;
 }
 
-export interface IHttpEncoding<Bundle extends boolean = false> {
+export interface IHttpEncoding<Bundle extends boolean = false> extends ISpecExtensions {
   property: string;
 
   // defaults to form
@@ -266,10 +266,9 @@ export type HttpSecurityScheme =
   | IOpenIdConnectSecurityScheme
   | IMutualTLSSecurityScheme;
 
-interface ISecurityScheme extends IShareableNode {
+interface ISecurityScheme extends IShareableNode, ISpecExtensions {
   key: string;
   description?: string;
-  extensions: Extensions;
 }
 
 export interface IApiKeySecurityScheme extends ISecurityScheme {
@@ -338,11 +337,7 @@ export type Reference = {
   description?: string;
 };
 
-export interface Extensions {
-  [key: string]: unknown;
-}
-
-export interface IExternalDocs { 
+export interface IExternalDocs extends ISpecExtensions {
   description?: string;
   url: string;
 }
