@@ -44,6 +44,7 @@ export interface IBundledHttpService extends Omit<IHttpService, 'securitySchemes
     query: (IComponentNode & (IHttpQueryParam<true> | Reference))[];
     header: (IComponentNode & (IHttpHeaderParam<true> | Reference))[];
     cookie: (IComponentNode & (IHttpCookieParam<true> | Reference))[];
+    unknownParameters: (IComponentNode & Reference)[];
     examples: (IComponentNode & (INodeExample | INodeExternalExample | Reference))[];
     requestBodies: (IComponentNode & (IHttpOperationRequestBody<true> | Reference))[];
     securitySchemes: (IComponentNode & (HttpSecurityScheme | Reference))[];
