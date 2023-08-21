@@ -11,7 +11,7 @@ export interface IHttpService extends INode, IShareableNode, ISpecExtensions {
   name: string;
   version: string;
   servers?: IServer[];
-  security?: HttpSecurityScheme[];
+  security?: HttpSecurityScheme[][];
   securitySchemes?: HttpSecurityScheme[];
   termsOfService?: string;
   contact?: {
@@ -160,7 +160,7 @@ export enum HttpParamStyles {
    */
   Label = 'label',
   /**
-   * OAS 3.x style form 
+   * OAS 3.x style form
    * OAS 2 collectionFormat
    *   * csv, when explode === false
    *   * multi, when explode === true
