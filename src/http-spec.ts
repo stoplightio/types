@@ -1,6 +1,6 @@
 import { JSONSchema7 } from 'json-schema';
 import { Dictionary } from './basic';
-import { IComponentNode, INode, INodeExample, INodeExternalExample, IShareableNode, ISpecExtensions } from './graph';
+import { Extensions, IComponentNode, INode, INodeExample, INodeExternalExample, IShareableNode, ISpecExtensions } from './graph';
 import { IServer } from './servers';
 
 /**
@@ -30,6 +30,7 @@ export interface IHttpService extends INode, IShareableNode, ISpecExtensions {
     url?: string;
     backgroundColor?: string;
   };
+  infoExtensions?: Extensions;
   internal?: boolean;
   externalDocs?: IExternalDocs;
 }
