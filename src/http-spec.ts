@@ -11,7 +11,7 @@ export interface IHttpService extends INode, IShareableNode, ISpecExtensions {
   name: string;
   version: string;
   servers?: IServer[];
-  security?: HttpSecurityScheme[];
+  security?: HttpSecurityScheme[][];
   securitySchemes?: HttpSecurityScheme[];
   termsOfService?: string;
   contact?: {
