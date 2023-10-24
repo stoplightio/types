@@ -6,6 +6,7 @@ export enum NodeType {
   HttpService = 'http_service',
   HttpServer = 'http_server',
   HttpOperation = 'http_operation',
+  HttpCallback = 'http_callback',
   Model = 'model',
   Generic = 'generic',
   Unknown = 'unknown',
@@ -13,8 +14,9 @@ export enum NodeType {
   SpectralRuleset = 'spectral_ruleset',
   Styleguide = 'styleguide',
   Image = 'image',
+  StoplightResolutions = 'stoplight_resolutions',
+  StoplightOverride = 'stoplight_override',
 }
-
 /**
  * Node data formats
  */
