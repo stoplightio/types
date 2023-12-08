@@ -37,6 +37,7 @@ export interface IHttpService extends INode, IShareableNode, ISpecExtensions {
 
 export interface IBundledHttpService extends Omit<IHttpService, 'securitySchemes'> {
   operations: IHttpOperation<true>[];
+  webhooks: IHttpWebhookOperation<true>[];
 
   components: {
     schemas: (IComponentNode & JSONSchema7)[];
@@ -59,12 +60,11 @@ export interface IBundledHttpService extends Omit<IHttpService, 'securitySchemes
 }
 
 /**
- * HTTP Operation
+ * HTTP Operation & Webhooks
  */
 
-export interface IHttpOperation<Bundle extends boolean = false> extends INode, IShareableNode, ISpecExtensions {
+export interface IHttpEndpointOperation<Bundle extends boolean = false> extends INode, IShareableNode, ISpecExtensions {
   method: string;
-  path: string;
   request?: Bundle extends true ? IHttpOperationRequest<true> | Reference : IHttpOperationRequest<false>;
   responses: (Bundle extends true
     ? IHttpOperationResponse<true> | (Pick<IHttpOperationResponse, 'code'> & Reference)
@@ -76,6 +76,14 @@ export interface IHttpOperation<Bundle extends boolean = false> extends INode, I
   deprecated?: boolean;
   internal?: boolean;
   externalDocs?: IExternalDocs;
+}
+
+export interface IHttpOperation<Bundle extends boolean = false> extends IHttpEndpointOperation<Bundle> {
+  path: string;
+}
+
+export interface IHttpWebhookOperation<Bundle extends boolean = false> extends IHttpEndpointOperation<Bundle> {
+  name: string;
 }
 
 export enum HttpOperationSecurityDeclarationTypes {
