@@ -7,6 +7,7 @@ export enum NodeType {
   HttpServer = 'http_server',
   HttpOperation = 'http_operation',
   HttpCallback = 'http_callback',
+  HttpWebhook = 'http_webhook',
   Model = 'model',
   Generic = 'generic',
   Unknown = 'unknown',
