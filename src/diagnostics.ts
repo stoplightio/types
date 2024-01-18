@@ -72,6 +72,11 @@ export interface IDiagnostic {
    * a scope collide all definitions can be marked via this property.
    */
   relatedInformation?: IDiagnosticRelatedInformation[];
+
+  /**
+   * An url pointing to the documentation to which this diagnostic applies.
+   */
+  documentationUrl?: string;
 }
 
 /**
